@@ -14,11 +14,9 @@
 
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
+SnapKey is lightweight open source utility that runs in the system tray and is designed to monitor user inputs for the A and D keys, without engaging directly with any game files. Its primary function is to detect when these keys are pressed and promptly cancel any previously held commands for them. 
 
-
-SnapKey is a lightweight open source utility that runs in the system tray.
-
-SnapKey helps you quickly switch between the "A" and "D" keys on your keyboard.
+This ensures that inputs are responsive and accurate, it operates exclusively to manage the A and D key inputs.
 
 **[Download SnapKey](https://github.com/cafali/SnapKey/releases/tag/SnapKey)**
 --------------------------------------------------------------------------------------------------
