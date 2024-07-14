@@ -18,7 +18,7 @@ It's particularly useful for gamers seeking quick and precise key control.
 Quick Guide to Using Snapkey
 
 1. Launch Snapkey:
-   - Open Snapkey from your desktop or programs list.
+   - Open Snapkey.
 
 2. System Tray:
    - Snapkey will appear in your system tray.
