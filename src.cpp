@@ -1,3 +1,6 @@
+// Compiled using MinGW:
+// g++ -o SnapKey SnapKey.cpp -mwindows -std=c++11
+
 #include <windows.h>
 #include <shellapi.h>
 
