@@ -1,5 +1,7 @@
 ![DFSDSSAS](https://github.com/user-attachments/assets/db8591f7-dca1-4649-bd11-2e6ae257634e)
 
+[Download SnapKey](https://github.com/cafali/SnapKey/releases/tag/SnapKey)
+
 SnapKey is a lightweight open source utility that runs in the system tray.
 
 SnapKey helps you quickly switch between the "A" and "D" keys on your keyboard.
