@@ -137,7 +137,19 @@ void InitNotifyIconData(HWND hwnd)
     nid.uID = ID_TRAY_APP_ICON;
     nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
     nid.uCallbackMessage = WM_TRAYICON;
-    nid.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+
+    // Load the icon from the current directory
+    HICON hIcon = (HICON)LoadImage(NULL, TEXT("icon.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+    if (hIcon)
+    {
+        nid.hIcon = hIcon;
+    }
+    else
+    {
+        // If loading the icon fails, fallback to a default icon
+        nid.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    }
+
     lstrcpy(nid.szTip, TEXT("SnapKey"));
 
     Shell_NotifyIcon(NIM_ADD, &nid);
