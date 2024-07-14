@@ -10,6 +10,7 @@ Holding both keys simultaneously prevents your character from moving.
 
 SnapKey automatically releases a previously held key when a new key is pressed and held down (A/D).
 
+**[Download SnapKey](https://github.com/cafali/SnapKey/releases/tag/SnapKey)**
 --------------------------------------------------------------------------------------------------
 
 **About SnapKey**
@@ -22,9 +23,9 @@ Its primary function is to detect when these keys are pressed and promptly cance
 
 This ensures that inputs are responsive and accurate, it operates exclusively to manage the A and D key inputs.
 
-**[Download SnapKey](https://github.com/cafali/SnapKey/releases/tag/SnapKey)**
 --------------------------------------------------------------------------------------------------
 **Here’s how it works:**
+--------------------------------------------------------------------------------------------------
 - When you press and hold down the "A" key, SnapKey remembers it.
 - If you then press the "D" key while still holding down "A," SnapKey automatically releases the "A" key for you.
 - The same happens if you press "A" while holding "D" — SnapKey releases the "D" key.
