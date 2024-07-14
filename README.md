@@ -14,6 +14,8 @@ Here’s how it works:
 It's particularly useful for gamers seeking quick and precise key control. 
 
 ![ezgif-5-2151d4855b](https://github.com/user-attachments/assets/e70c8a55-e282-4fb3-9a4e-6bc3eff0c2a6)
+![ezgif-1-f1bbecbd40](https://github.com/user-attachments/assets/09207ac6-8939-446b-b06e-5ec2095e8cb8)
+
 
 Quick Guide to Using Snapkey
 
