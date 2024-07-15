@@ -62,7 +62,7 @@ It's particularly useful for gamers seeking quick and precise key control.
 
 
 4. You're All Set:
-   - Snapkey is now running and ready to use
+   - Snapkey is now running and is ready to use
 
 Close Snapkey
 --------------------------------------------------------------------------------------------------
