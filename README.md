@@ -44,29 +44,29 @@ It's particularly useful for gamers seeking quick and precise key control.
 
 --------------------------------------------------------------------------------------------------
 
-**Quick Guide to Using Snapkey**
+**Quick Guide to Using SnapKey**
 --------------------------------------------------------------------------------------------------
 
-1. Launch Snapkey:
-   - Open Snapkey
+1. Launch SnapKey:
+   - Open SnapKey
 
     ![image](https://github.com/user-attachments/assets/b420fe49-bd7d-432d-a68f-1e66f468a648)
 
 
 
 2. System Tray:
-   - Snapkey will appear in your system tray
+   - SnapKey will appear in your system tray
 
 ![tray](https://github.com/user-attachments/assets/26c08735-76f2-4bc0-aa75-44c9a866b453)
 
 
 
 4. You're All Set:
-   - Snapkey is now running and is ready to use
+   - SnapKey is now running and is ready to use
 
-Close Snapkey
+Close SnapKey
 --------------------------------------------------------------------------------------------------
-   - Right-click the Snapkey icon in the system tray and select "Exit SnapKey"
+   - Right-click the SnapKey icon in the system tray and select "Exit SnapKey"
 
 ![exit](https://github.com/user-attachments/assets/d9266b0c-75f0-4c07-9d55-4924a2515b82)
 
