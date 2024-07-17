@@ -50,7 +50,7 @@ It's particularly useful for gamers seeking quick and precise key control.
 1. Launch SnapKey:
    - Open SnapKey
 
-    ![image](https://github.com/user-attachments/assets/b420fe49-bd7d-432d-a68f-1e66f468a648)
+![image](https://github.com/user-attachments/assets/b420fe49-bd7d-432d-a68f-1e66f468a648)
 
 
 
