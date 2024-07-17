@@ -62,7 +62,7 @@ It's particularly useful for gamers seeking quick and precise key control.
 
 
 
-4. You're All Set:
+3. You're All Set:
    - SnapKey is now running and is ready to use
 
 Close SnapKey
