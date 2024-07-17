@@ -10,8 +10,9 @@ Holding both keys simultaneously prevents your character from moving.
 
 SnapKey automatically releases a previously held key when a new key is pressed and held down (A/D).
 
-**[Download SnapKey](https://github.com/cafali/SnapKey/releases/tag/SnapKey)**
+Download
 --------------------------------------------------------------------------------------------------
+**[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases/tag/SnapKey)**
 
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
