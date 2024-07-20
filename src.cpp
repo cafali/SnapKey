@@ -1,4 +1,3 @@
-// Compiled using MinGW:
 // g++ -o SnapKey SnapKey.cpp -mwindows -std=c++11
 
 #include <windows.h>
@@ -21,6 +20,14 @@ void InitNotifyIconData(HWND hwnd);
 
 int main()
 {
+    // Create a named mutex
+    HANDLE hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
+    if (GetLastError() == ERROR_ALREADY_EXISTS)
+    {
+        MessageBox(NULL, TEXT("  SnapKey is already running!"), TEXT("Error"), MB_ICONINFORMATION | MB_OK);
+        return 1; // Exit the program
+    }
+
     // Create a window class
     WNDCLASSEX wc = {0};
     wc.cbSize = sizeof(WNDCLASSEX);
@@ -30,6 +37,8 @@ int main()
 
     if (!RegisterClassEx(&wc)) {
         MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        ReleaseMutex(hMutex); 
+        CloseHandle(hMutex); 
         return 1;
     }
 
@@ -44,6 +53,8 @@ int main()
 
     if (hwnd == NULL) {
         MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        ReleaseMutex(hMutex); 
+        CloseHandle(hMutex); 
         return 1;
     }
 
@@ -55,6 +66,8 @@ int main()
     if (hHook == NULL)
     {
         MessageBox(NULL, TEXT("Failed to install hook!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        ReleaseMutex(hMutex); // Release the mutex before exiting
+        CloseHandle(hMutex); // Close the handle
         return 1;
     }
 
@@ -71,6 +84,10 @@ int main()
 
     // Remove the system tray icon
     Shell_NotifyIcon(NIM_DELETE, &nid);
+
+    // Release and close the mutex
+    ReleaseMutex(hMutex);
+    CloseHandle(hMutex);
 
     return 0;
 }
