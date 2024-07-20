@@ -12,7 +12,7 @@ SnapKey automatically releases a previously held key when a new key is pressed a
 
 Download
 --------------------------------------------------------------------------------------------------
-**[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases/tag/SnapKey)**
+**[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases)**
 
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
