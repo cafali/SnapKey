@@ -45,6 +45,25 @@ It's particularly useful for gamers seeking quick and precise key control.
 
 --------------------------------------------------------------------------------------------------
 
+**Rebind Keys**
+--------------------------------------------------------------------------------------------------
+1. Look for a file named config.cfg in the same directory where the SnapKey executable (SnapKey.exe) is located.
+2. Open the Config File: Use a text editor such as Notepad, Notepad++, or any other text editor of your choice.
+3. Enter or update the key bindings in the file using the following format:
+
+   keyA=65
+
+   keyD=68
+
+5. Use the virtual key codes provided in the configuration file for the keys you want to assign.
+6. Save
+7. If SnapKey is already running, you will need to restart it in order for the changes to take effect.
+
+![cfg](https://github.com/user-attachments/assets/243525c2-a1fe-4b54-a0a3-7d03a3870514)
+
+
+
+
 **Quick Guide to Using SnapKey**
 --------------------------------------------------------------------------------------------------
 
