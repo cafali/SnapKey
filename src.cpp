@@ -5,16 +5,26 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <unordered_map>
+#include <iostream>
+
+using namespace std;
 
 #define ID_TRAY_APP_ICON                1001
 #define ID_TRAY_EXIT_CONTEXT_MENU_ITEM  3000
 #define WM_TRAYICON                     (WM_USER + 1)
 
+struct KeyState
+{
+    bool pressed = false;
+};
+
 // Global variables
 int keyA_code = 'A'; // Default to 'A'
 int keyD_code = 'D'; // Default to 'D'
-bool keyA_pressed = false;
-bool keyD_pressed = false;
+unordered_map<int, KeyState> keyStates;
+int activeKey = 0;
+int previousKey = 0;
 HHOOK hHook = NULL;
 NOTIFYICONDATA nid;
 
@@ -104,6 +114,59 @@ int main()
     return 0;
 }
 
+void handleKeyDown(int keyCode)
+{
+    auto& keyState = keyStates[keyCode];
+    if (keyCode == keyA_code || keyCode == keyD_code)
+    {
+        if (!keyState.pressed)
+        {
+            keyState.pressed = true;
+            if (activeKey == 0 || activeKey == keyCode)
+            {
+                activeKey = keyCode;
+            } 
+            else 
+            {
+                previousKey = activeKey;
+                activeKey = keyCode;
+
+                INPUT input = {0};
+                input.type = INPUT_KEYBOARD;
+                input.ki.wVk = previousKey;
+                input.ki.dwFlags = KEYEVENTF_KEYUP;
+                SendInput(1, &input, sizeof(INPUT));
+            }
+        }
+    }
+}
+
+void handleKeyUp(int keyCode)
+{
+    if (keyCode == keyA_code || keyCode == keyD_code)
+    {
+        auto& keyState = keyStates[keyCode];
+        if (previousKey == keyCode && !keyState.pressed)
+        {
+            previousKey = 0;
+        }
+        if (keyState.pressed) 
+        {
+            keyState.pressed = false;
+            if (activeKey == keyCode && previousKey != 0)
+            {
+                activeKey = previousKey;
+                previousKey = 0;
+
+                INPUT input = {0};
+                input.type = INPUT_KEYBOARD;
+                input.ki.wVk = activeKey;
+                SendInput(1, &input, sizeof(INPUT));
+            }
+        }
+    }
+}
+
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
     if (nCode == HC_ACTION)
@@ -111,50 +174,14 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         KBDLLHOOKSTRUCT *pKeyBoard = (KBDLLHOOKSTRUCT *)lParam;
         switch (wParam)
         {
-        case WM_KEYDOWN:
-            if (pKeyBoard->vkCode == keyA_code)
-            {
-                if (keyD_pressed)
-                {
-                    // Release D
-                    keyD_pressed = false;
-                    INPUT input = {0};
-                    input.type = INPUT_KEYBOARD;
-                    input.ki.wVk = keyD_code;
-                    input.ki.dwFlags = KEYEVENTF_KEYUP;
-                    SendInput(1, &input, sizeof(INPUT));
-                }
-                keyA_pressed = true;
-            }
-            else if (pKeyBoard->vkCode == keyD_code)
-            {
-                if (keyA_pressed)
-                {
-                    // Release A
-                    keyA_pressed = false;
-                    INPUT input = {0};
-                    input.type = INPUT_KEYBOARD;
-                    input.ki.wVk = keyA_code;
-                    input.ki.dwFlags = KEYEVENTF_KEYUP;
-                    SendInput(1, &input, sizeof(INPUT));
-                }
-                keyD_pressed = true;
-            }
-            break;
-
-        case WM_KEYUP:
-            if (pKeyBoard->vkCode == keyA_code)
-            {
-                keyA_pressed = false;
-            }
-            else if (pKeyBoard->vkCode == keyD_code)
-            {
-                keyD_pressed = false;
-            }
-            break;
-
-        default:
-            break;
+            case WM_KEYDOWN:
+                handleKeyDown(pKeyBoard->vkCode);
+                break;
+            case WM_KEYUP:
+                handleKeyUp(pKeyBoard->vkCode);
+                break;
+            default:
+                break;
         }
     }
     return CallNextHookEx(hHook, nCode, wParam, lParam);
