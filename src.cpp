@@ -115,21 +115,22 @@ int main()
 
 void handleKeyDown(int keyCode)
 {
-    auto& keyState = keyStates[keyCode];
     if (keyCode == keyA_code || keyCode == keyD_code)
     {
+        // get key state
+        auto& keyState = keyStates[keyCode];
         if (!keyState.pressed)
         {
+            // set key state + check if key is current key
             keyState.pressed = true;
-            if (activeKey == 0 || activeKey == keyCode)
-            {
-                activeKey = keyCode;
-            } 
+            if (activeKey == 0 || activeKey == keyCode) activeKey = keyCode;
             else 
             {
+                // set previous key to current key and active to current
                 previousKey = activeKey;
                 activeKey = keyCode;
 
+                // send keyup input to previous
                 INPUT input = {0};
                 input.type = INPUT_KEYBOARD;
                 input.ki.wVk = previousKey;
@@ -145,18 +146,20 @@ void handleKeyUp(int keyCode)
     if (keyCode == keyA_code || keyCode == keyD_code)
     {
         auto& keyState = keyStates[keyCode];
-        if (previousKey == keyCode && !keyState.pressed)
-        {
-            previousKey = 0;
-        }
+        // to prevent previous key getting stuck, check if it is the called key as well as if it's (not) pressed
+        if (previousKey == keyCode && !keyState.pressed) previousKey = 0;
         if (keyState.pressed) 
         {
+            // set key state to released
             keyState.pressed = false;
+            // check if previous key exists and the current key is the one we just released
             if (activeKey == keyCode && previousKey != 0)
             {
+                // set active to previous and clear previous
                 activeKey = previousKey;
                 previousKey = 0;
 
+                // send keydown input to active
                 INPUT input = {0};
                 input.type = INPUT_KEYBOARD;
                 input.ki.wVk = activeKey;

@@ -59,7 +59,8 @@ It's particularly useful for gamers seeking quick and precise key control.
 6. Save
 7. If SnapKey is already running, you will need to restart it in order for the changes to take effect.
 
-![cfg](https://github.com/user-attachments/assets/243525c2-a1fe-4b54-a0a3-7d03a3870514)
+![cfg](https://github.com/user-attachments/assets/0a39b349-3326-44f0-ac08-81052990ec96)
+
 
 
 
