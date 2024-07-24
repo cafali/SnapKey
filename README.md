@@ -22,7 +22,7 @@ SnapKey is a lightweight open source utility that runs in the system tray and is
 
 Its primary function is to detect when these keys are pressed and promptly cancel any previously held commands for them. 
 
-This ensures that inputs are responsive and accurate, it operates exclusively to manage the A and D key inputs.
+This ensures that inputs are responsive and accurate. It manages the A and D key inputs; you can rebind the keys at any time in the config file using the provided ASCII codes.
 
 --------------------------------------------------------------------------------------------------
 **Here’s how it works:**
