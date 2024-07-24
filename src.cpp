@@ -1,13 +1,18 @@
-// g++ -o SnapKey SnapKey.cpp -mwindows -std=c++11
+// g++ -o SnapKey SnapKey.cpp -mwindows -std=c++11 -static
 
 #include <windows.h>
 #include <shellapi.h>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 #define ID_TRAY_APP_ICON                1001
 #define ID_TRAY_EXIT_CONTEXT_MENU_ITEM  3000
 #define WM_TRAYICON                     (WM_USER + 1)
 
 // Global variables
+int keyA_code = 'A'; // Default to 'A'
+int keyD_code = 'D'; // Default to 'D'
 bool keyA_pressed = false;
 bool keyD_pressed = false;
 HHOOK hHook = NULL;
@@ -17,14 +22,21 @@ NOTIFYICONDATA nid;
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void InitNotifyIconData(HWND hwnd);
+bool LoadConfig(const std::string& filename);
 
 int main()
 {
+    // Load key bindings from config file
+    if (!LoadConfig("config.cfg")) {
+        MessageBox(NULL, TEXT("Failed to load configuration file!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        return 1;
+    }
+
     // Create a named mutex
     HANDLE hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
-        MessageBox(NULL, TEXT("  SnapKey is already running!"), TEXT("Error"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("Error"), MB_ICONINFORMATION | MB_OK);
         return 1; // Exit the program
     }
 
@@ -100,7 +112,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case WM_KEYDOWN:
-            if (pKeyBoard->vkCode == 'A')
+            if (pKeyBoard->vkCode == keyA_code)
             {
                 if (keyD_pressed)
                 {
@@ -108,13 +120,13 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
                     keyD_pressed = false;
                     INPUT input = {0};
                     input.type = INPUT_KEYBOARD;
-                    input.ki.wVk = 'D';
+                    input.ki.wVk = keyD_code;
                     input.ki.dwFlags = KEYEVENTF_KEYUP;
                     SendInput(1, &input, sizeof(INPUT));
                 }
                 keyA_pressed = true;
             }
-            else if (pKeyBoard->vkCode == 'D')
+            else if (pKeyBoard->vkCode == keyD_code)
             {
                 if (keyA_pressed)
                 {
@@ -122,7 +134,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
                     keyA_pressed = false;
                     INPUT input = {0};
                     input.type = INPUT_KEYBOARD;
-                    input.ki.wVk = 'A';
+                    input.ki.wVk = keyA_code;
                     input.ki.dwFlags = KEYEVENTF_KEYUP;
                     SendInput(1, &input, sizeof(INPUT));
                 }
@@ -131,11 +143,11 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             break;
 
         case WM_KEYUP:
-            if (pKeyBoard->vkCode == 'A')
+            if (pKeyBoard->vkCode == keyA_code)
             {
                 keyA_pressed = false;
             }
-            else if (pKeyBoard->vkCode == 'D')
+            else if (pKeyBoard->vkCode == keyD_code)
             {
                 keyD_pressed = false;
             }
@@ -211,4 +223,28 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         return DefWindowProc(hwnd, msg, wParam, lParam);
     }
     return 0;
+}
+
+bool LoadConfig(const std::string& filename)
+{
+    std::ifstream configFile(filename);
+    if (!configFile.is_open()) {
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(configFile, line)) {
+        std::istringstream iss(line);
+        std::string key;
+        int value;
+        if (std::getline(iss, key, '=') && (iss >> value)) {
+            if (key == "keyA") {
+                keyA_code = value;
+            } else if (key == "keyD") {
+                keyD_code = value;
+            }
+        }
+    }
+
+    return true;
 }
