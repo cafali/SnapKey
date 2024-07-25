@@ -31,14 +31,20 @@ This ensures that inputs are responsive and accurate. It manages the A and D key
 - If you then press the "D" key while still holding down "A," SnapKey automatically releases the "A" key for you.
 - The same happens if you press "A" while holding "D" — SnapKey releases the "D" key.
 
-It's particularly useful for gamers seeking quick and precise key control. 
-
---------------------------------------------------------------------------------------------------
 **Preventing simultaneous pressing of both the A and D keys:**
 
 ![ezgif-5-2151d4855b](https://github.com/user-attachments/assets/e70c8a55-e282-4fb3-9a4e-6bc3eff0c2a6)
 
---------------------------------------------------------------------------------------------------
+**Sticky Keys:**
+
+Sticky Keys is a feature that keeps track of the state of a key you've pressed down. For example, if you 
+hold down the "A" key and tap the "D" key repeatedly, each press of "D" will temporarily override 
+the "A" key. When you release the "D" key, the action associated with the "A" key will resume, as 
+long as you're still holding it down. The same principle applies if you start with "D" held down and 
+press "A" instead. 
+
+![Snapkey](https://github.com/user-attachments/assets/504ffa5e-50d3-4a77-9016-70f22d143cb1)
+
 **Enhanced precision of counter-strafing:**
 
 ![ezgif-1-f1bbecbd40](https://github.com/user-attachments/assets/09207ac6-8939-446b-b06e-5ec2095e8cb8)
