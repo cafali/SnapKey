@@ -37,7 +37,7 @@ int main()
 {
     // Load key bindings from config file
     if (!LoadConfig("config.cfg")) {
-        MessageBox(NULL, TEXT("Failed to load configuration file!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, TEXT(" Failed to load config.cfg!"), TEXT("SnapKey Error"), MB_ICONHAND | MB_OK);
         return 1;
     }
 
@@ -45,7 +45,7 @@ int main()
     HANDLE hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
-        MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("Error"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, TEXT(" SnapKey is already running!"), TEXT("SnapKey Error"), MB_ICONINFORMATION | MB_OK);
         return 1; // Exit the program
     }
 
