@@ -108,8 +108,6 @@ Close SnapKey
 
 ![exit](https://github.com/user-attachments/assets/d9266b0c-75f0-4c07-9d55-4924a2515b82)
 
-**For the Linux Users out there:**
+**Linux Support**
 --------------------------------------------------------------------------------------------------
-Check out the guide by @Dillacorn on how to run SnapKey on Linux.
-
-**[Run SnapKey on Linux](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)**
+For the Linux Users out there, check out the **[guide](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)** by @Dillacorn on how to run SnapKey on Linux.
