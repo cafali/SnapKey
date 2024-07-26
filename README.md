@@ -111,4 +111,5 @@ Close SnapKey
 **For the Linux Users out there:**
 --------------------------------------------------------------------------------------------------
 Check out the guide by @Dillacorn on how to run SnapKey on Linux.
+
 **[Run SnapKey on Linux](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)**
