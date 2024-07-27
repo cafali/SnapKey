@@ -64,17 +64,31 @@ press "A" instead.
 
 **Rebind Keys**
 --------------------------------------------------------------------------------------------------
-1. Look for a file named config.cfg in the same directory where the SnapKey executable (SnapKey.exe) is located.
-2. Open the Config File: Use a text editor such as Notepad, Notepad++, or any other text editor of your choice.
-3. Enter or update the key bindings in the file using the following format:
+To rebind your keys, follow these steps:
 
-   keyA=65
+1. **Open the File**: Use any text editor to open the **config.cfg** file, which is located in the main SnapKey directory.
 
-   keyD=68
+2. **Find the Key Settings**: Look for these lines:
+   ```
+   KeyA=65    (A is 65 in ASCII)
+   KeyD=68    (D is 68 in ASCII)
+   ```
 
-5. Use the virtual key codes provided in the configuration file for the keys you want to assign.
-6. Save
-7. If SnapKey is already running, you will need to restart it in order for the changes to take effect.
+3. **Find ASCII Codes**: The ASCII codes you need can be found in the list provided below in the cfg file.
+
+4. **Change the Numbers**: Replace the numbers with the ASCII codes of the keys you want:
+   - For example, to set 'F' (ASCII 70) for KeyA, change `KeyA=65` to `KeyA=70`.
+   - To set 'G' (ASCII 71) for KeyD, change `KeyD=68` to `KeyD=71`.
+
+5. **Your Config File Should Look Like This**:
+   ```
+   KeyA=70
+   KeyD=71
+   ```
+
+6. **Restart Required**: After making these changes, restart Snapkey for the new key bindings to take effect.
+
+**Warning**: Do not change `KeyA=` or `KeyD=` to any other letters, for example `KeyF=`. You are **only allowed to modify the number** according to the **ASCII table**. Changing these labels will break the functionality of the config file, causing it to stop working.
 
 ![cfg](https://github.com/user-attachments/assets/0a39b349-3326-44f0-ac08-81052990ec96)
 
