@@ -110,4 +110,7 @@ Close SnapKey
 
 **Linux Support**
 --------------------------------------------------------------------------------------------------
-For the Linux Users out there, check out the **[guide](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)** by @Dillacorn on how to run SnapKey on Linux.
+Since SnapKey isn’t natively supported on Linux, it’s recommended to check out @Dillacorn's guide on **[running SnapKey on Linux](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)**.
+
+![SpanLin](https://github.com/user-attachments/assets/bb134fba-ec40-421c-9a0b-f2f9a81fdf79)
+
