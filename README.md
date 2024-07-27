@@ -44,7 +44,9 @@ This ensures that inputs are responsive and accurate. It manages the A and D key
 
 **Preventing simultaneous pressing of both the A and D keys**
 
-![ezgif-5-2151d4855b](https://github.com/user-attachments/assets/e70c8a55-e282-4fb3-9a4e-6bc3eff0c2a6)
+![test](https://github.com/user-attachments/assets/20c0bad9-a33b-4c5a-8f85-bb8a21f0d951)
+
+
 
 **Sticky Keys**
 
