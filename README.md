@@ -66,7 +66,7 @@ press "A" instead.
 --------------------------------------------------------------------------------------------------
 To rebind your keys, follow these steps:
 
-1. **Open the File**: Use any text editor to open the **config.cfg** file, which is located in the main SnapKey directory.
+1. **Open the Config File**: Use any text editor to open the **config.cfg** file, which is located in the main SnapKey directory.
 
 2. **Find the Key Settings**: Look for these lines:
    ```
@@ -74,7 +74,7 @@ To rebind your keys, follow these steps:
    KeyD=68    (D is 68 in ASCII)
    ```
 
-3. **Find ASCII Codes**: The ASCII codes you need can be found in the list provided below in the cfg file.
+3. **Find ASCII Codes**: The ASCII codes you need can be found in the list provided **below** in the **cfg file**.
 
 4. **Change the Numbers**: Replace the numbers with the ASCII codes of the keys you want:
    - For example, to set 'F' (ASCII 70) for KeyA, change `KeyA=65` to `KeyA=70`.
