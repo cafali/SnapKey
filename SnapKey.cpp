@@ -198,7 +198,7 @@ void InitNotifyIconData(HWND hwnd)
     nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
     nid.uCallbackMessage = WM_TRAYICON;
 
-    // Load the icon from the current directory
+    // Load the tray icon from the current directory
     HICON hIcon = (HICON)LoadImage(NULL, TEXT("icon.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
     if (hIcon)
     {
@@ -263,7 +263,7 @@ void RestoreConfigFromBackup(const std::string& backupFilename, const std::strin
         // Copy successful
         MessageBox(NULL, TEXT("Config restored from backup successfully."), TEXT("SnapKey Information"), MB_ICONINFORMATION | MB_OK);
     } else {
-        // Copy failed
+        // backup.snapkey copy failed
         DWORD error = GetLastError();
         std::string errorMsg = "Failed to restore config from backup. Error code: " + std::to_string(error);
         MessageBox(NULL, errorMsg.c_str(), TEXT("SnapKey Error"), MB_ICONERROR | MB_OK);
