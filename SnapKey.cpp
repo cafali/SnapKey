@@ -1,5 +1,3 @@
-// g++ -o SnapKey SnapKey.cpp -mwindows -std=c++11 -static
-
 #include <windows.h>
 #include <shellapi.h>
 #include <fstream>
@@ -32,20 +30,21 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void InitNotifyIconData(HWND hwnd);
 bool LoadConfig(const std::string& filename);
+void CreateDefaultConfig(const std::string& filename); // Declaration
+void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename); // Declaration
 
 int main()
 {
     // Load key bindings from config file
     if (!LoadConfig("config.cfg")) {
-        MessageBox(NULL, TEXT(" Failed to load config.cfg!"), TEXT("SnapKey Error"), MB_ICONHAND | MB_OK);
-        return 1;
+        MessageBox(NULL, TEXT("A default config file has been created."), TEXT("SnapKey Information"), MB_ICONINFORMATION | MB_OK);
     }
 
     // Create a named mutex
     HANDLE hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
-        MessageBox(NULL, TEXT(" SnapKey is already running!"), TEXT("SnapKey Error"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("SnapKey Error"), MB_ICONINFORMATION | MB_OK);
         return 1; // Exit the program
     }
 
@@ -254,10 +253,36 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
+// Function to copy the backup file from the meta folder to the main directory
+void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename)
+{
+    std::string sourcePath = "meta\\" + backupFilename;
+    std::string destinationPath = destinationFilename;
+
+    if (CopyFile(sourcePath.c_str(), destinationPath.c_str(), FALSE)) {
+        // Copy successful
+        MessageBox(NULL, TEXT("Config restored from backup successfully."), TEXT("SnapKey Information"), MB_ICONINFORMATION | MB_OK);
+    } else {
+        // Copy failed
+        DWORD error = GetLastError();
+        std::string errorMsg = "Failed to restore config from backup. Error code: " + std::to_string(error);
+        MessageBox(NULL, errorMsg.c_str(), TEXT("SnapKey Error"), MB_ICONERROR | MB_OK);
+    }
+}
+
+// Restore config.cfg from backup.snapkey
+void CreateDefaultConfig(const std::string& filename)
+{
+    std::string backupFilename = "backup.snapkey";
+    RestoreConfigFromBackup(backupFilename, filename);
+}
+
+// Check for config.cfg
 bool LoadConfig(const std::string& filename)
 {
     std::ifstream configFile(filename);
     if (!configFile.is_open()) {
+        CreateDefaultConfig(filename);  // Restore config from backup if file doesn't exist
         return false;
     }
 
