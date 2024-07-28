@@ -37,14 +37,13 @@ int main()
 {
     // Load key bindings from config file
     if (!LoadConfig("config.cfg")) {
-        MessageBox(NULL, TEXT("A default config file has been created."), TEXT("SnapKey Information"), MB_ICONINFORMATION | MB_OK);
     }
 
     // Create a named mutex
     HANDLE hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
-        MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("SnapKey Error"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("SnapKey"), MB_ICONINFORMATION | MB_OK);
         return 1; // Exit the program
     }
 
@@ -261,11 +260,11 @@ void RestoreConfigFromBackup(const std::string& backupFilename, const std::strin
 
     if (CopyFile(sourcePath.c_str(), destinationPath.c_str(), FALSE)) {
         // Copy successful
-        MessageBox(NULL, TEXT("Config restored from backup successfully."), TEXT("SnapKey Information"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, TEXT(" Default config restored from backup successfully."), TEXT("SnapKey"), MB_ICONINFORMATION | MB_OK);
     } else {
         // backup.snapkey copy failed
         DWORD error = GetLastError();
-        std::string errorMsg = "Failed to restore config from backup. Error code: " + std::to_string(error);
+        std::string errorMsg = " Failed to restore config from backup.";
         MessageBox(NULL, errorMsg.c_str(), TEXT("SnapKey Error"), MB_ICONERROR | MB_OK);
     }
 }
