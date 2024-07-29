@@ -60,7 +60,7 @@ press "A" instead.
 
 **Enhanced precision of counter-strafing**
 
-![ezgif-1-f1bbecbd40](https://github.com/user-attachments/assets/09207ac6-8939-446b-b06e-5ec2095e8cb8)
+<img src="https://github.com/user-attachments/assets/301ade92-6173-4ea7-9ab0-f1de7948ee7b" width="600" height="338">
 
 --------------------------------------------------------------------------------------------------
 
