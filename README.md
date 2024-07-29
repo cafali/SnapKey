@@ -114,5 +114,7 @@ This will support X11/Xorg sessions natively using XInput.
 
 Wayland/Sway sessions currently have no proper way to get realtime input device events without some workarounds that aren't usage comfortable.
 
+Hyprland may get support; being Wayland similar, it has differences and support for libraries that may allow for realtime input.
+
 For the Linux Users out there, check out the **[guide](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)** by @Dillacorn on how to run SnapKey on Linux.
 
