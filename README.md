@@ -60,7 +60,8 @@ press "A" instead.
 
 **Enhanced precision of counter-strafing**
 
-<img src="https://github.com/user-attachments/assets/301ade92-6173-4ea7-9ab0-f1de7948ee7b" width="600" height="338">
+<img src="https://github.com/user-attachments/assets/4453aba4-b9bc-45e8-8a80-80caad39347b" width="600" height="338" alt="STRAFE">
+
 
 --------------------------------------------------------------------------------------------------
 
