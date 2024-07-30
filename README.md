@@ -44,13 +44,15 @@ This ensures that inputs are responsive and accurate. It manages the A and D key
 
 **Preventing simultaneous pressing of both the A and D keys**
 
+- In many FPS games, pressing both the A and D keys simultaneously typically results in the game recognizing conflicting inputs. SnapKey automatically releases the previously held key when a new key input is detected.
+
 ![test](https://github.com/user-attachments/assets/20c0bad9-a33b-4c5a-8f85-bb8a21f0d951)
 
 
 
 **Sticky Keys**
 
-Sticky Keys is a feature that keeps track of the state of a key you've pressed down. For example, if you 
+- Sticky Keys is a feature that keeps track of the state of a key you've pressed down. For example, if you 
 hold down the "A" key and tap the "D" key repeatedly, each press of "D" will temporarily override 
 the "A" key. When you release the "D" key, the action associated with the "A" key will resume, as 
 long as you're still holding it down. The same principle applies if you start with "D" held down and 
@@ -59,6 +61,8 @@ press "A" instead.
 ![Snapkey](https://github.com/user-attachments/assets/504ffa5e-50d3-4a77-9016-70f22d143cb1)
 
 **Enhanced precision of counter-strafing**
+
+- Automatically releases a previously held key when a new key (A/D) is pressed.
 
 <img src="https://github.com/user-attachments/assets/4453aba4-b9bc-45e8-8a80-80caad39347b" width="600" height="338" alt="STRAFE">
 
