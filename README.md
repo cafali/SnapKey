@@ -131,4 +131,11 @@ Since SnapKey isn’t natively supported on Linux, it’s recommended to check o
 
 ![SpanLin](https://github.com/user-attachments/assets/b47339e8-3ebf-4658-a07e-28c2df22a6c8)
 
+SnapKey Wiki
+--------------------------------------------------------------------------------------------------
+Need Help with Troubleshooting and More?
+
+[<img src="https://github.com/user-attachments/assets/6a14dfa2-a668-49dd-bedf-c75e9b37a5cd" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
+
+
 
