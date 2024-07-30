@@ -14,11 +14,9 @@ Download
 --------------------------------------------------------------------------------------------------
 **[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases)**
 
-SourceForge
+SourceForge [![Download SnapKey](https://img.shields.io/sourceforge/dw/snapkey.svg)](https://sourceforge.net/projects/snapkey/files/latest/download)
 --------------------------------------------------------------------------------------------------
 [![Download SnapKey](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/snapkey/files/latest/download)
-
-[![Download SnapKey](https://img.shields.io/sourceforge/dw/snapkey.svg)](https://sourceforge.net/projects/snapkey/files/latest/download)
 
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
