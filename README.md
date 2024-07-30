@@ -135,7 +135,7 @@ SnapKey Wiki
 --------------------------------------------------------------------------------------------------
 Need Help with Troubleshooting and More?
 
-[<img src="https://github.com/user-attachments/assets/6a14dfa2-a668-49dd-bedf-c75e9b37a5cd" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
+[<img src="https://github.com/user-attachments/assets/0c6d7564-6471-49f2-9367-64f7bffb7e37" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
 
 
 
