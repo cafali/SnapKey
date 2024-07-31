@@ -56,43 +56,6 @@ press "A" instead.
 
 <img src="https://github.com/user-attachments/assets/4453aba4-b9bc-45e8-8a80-80caad39347b" width="600" height="338" alt="STRAFE">
 
-
---------------------------------------------------------------------------------------------------
-
-**Rebind Keys**
---------------------------------------------------------------------------------------------------
-To rebind your keys, follow these steps:
-
-1. **Open the Config File**: Use any text editor to open the **config.cfg** file, which is located in the main SnapKey directory.
-
-2. **Find the Key Settings**: Look for these lines:
-   ```
-   KeyA=65    (A is 65 in ASCII)
-   KeyD=68    (D is 68 in ASCII)
-   ```
-
-3. **Find ASCII Codes**: The ASCII codes you need can be found in the list provided **below** in the **cfg file**.
-
-4. **Change the Numbers**: Replace the numbers with the ASCII codes of the keys you want:
-   - For example, to set 'F' (ASCII 70) for KeyA, change `KeyA=65` to `KeyA=70`.
-   - To set 'G' (ASCII 71) for KeyD, change `KeyD=68` to `KeyD=71`.
-
-5. **Your Config File Should Look Like This**:
-   ```
-   KeyA=70
-   KeyD=71
-   ```
-
-6. **Restart Required**: After making these changes, restart Snapkey for the new key bindings to take effect.
-
-**Warning**: Do not change `KeyA=` or `KeyD=` to any other letters, for example `KeyF=`. You are **only allowed to modify the number** according to the **ASCII table**. Changing these labels will break the functionality of the config file, causing it to stop working.
-
-![cfg](https://github.com/user-attachments/assets/0a39b349-3326-44f0-ac08-81052990ec96)
-
-
-
-
-
 **Quick Guide to Using SnapKey**
 --------------------------------------------------------------------------------------------------
 
@@ -127,7 +90,7 @@ Since SnapKey isn’t natively supported on Linux, it’s recommended to check o
 
 SnapKey Wiki
 --------------------------------------------------------------------------------------------------
-Need Help with Troubleshooting and More?
+Looking for More Information? Got Questions or Need Help?
 
 [<img src="https://github.com/user-attachments/assets/0c6d7564-6471-49f2-9367-64f7bffb7e37" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
 
