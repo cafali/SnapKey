@@ -1,19 +1,5 @@
 ![DFSDSSAS](https://github.com/user-attachments/assets/db8591f7-dca1-4649-bd11-2e6ae257634e)
 
-**TL;DR**
---------------------------------------------------------------------------------------------------
-**Without SnapKey:** 
-
-Holding both keys simultaneously prevents your character from moving.
-
-**With SnapKey:** 
-
-SnapKey automatically releases a previously held key when a new key is pressed and held down (A/D).
-
-Download
---------------------------------------------------------------------------------------------------
-**[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases)**
-
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
 SnapKey offers a simple and intuitive alternative to the Razer Snap Tap function, making it accessible across all keyboards!
@@ -24,12 +10,16 @@ Its primary function is to detect when these keys are pressed and promptly cance
 
 This ensures that inputs are responsive and accurate. It manages the A and D key inputs; you can rebind the keys at any time in the config file using the provided ASCII codes.
 
+Download
+--------------------------------------------------------------------------------------------------
+**[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases)**
+
 **SnapKey Features**
 --------------------------------------------------------------------------------------------------
 
+- Lightweight and open-source
 - Compatible with all keyboards
 - Accessible via the system tray
-- Lightweight and open-source
 - Facilitates smoother transitions between left and right movements without input conflicts
 - Enhances the precision of counter-strafing movements in games
 - Allows key rebinding using ASCII codes specified in the configuration file
