@@ -1,12 +1,12 @@
-keyA=65
-keyD=68  
+key1=65
+key2=68  
 
 # After applying the changes, please restart SnapKey.
-# Change the number, for example, for "G" - KeyA=71
+# Change the number, for example, for "G" - Key1=71
 # ---------------------------------------------------------
-# for AZERTY - KeyA=81 KeyD=68
-# for QWERTZ - KeyA=65 KeyD=68
-# for QWERTY - KeyA=65 KeyD=68
+# for AZERTY - Key1=81 Key2=68
+# for QWERTZ - Key1=65 Key2=68
+# for QWERTY - Key1=65 Key2=68
 # ---------------------------------------------------------
 
 # ASCII Code List:
