@@ -17,8 +17,8 @@ struct KeyState
 };
 
 // Global variables
-int keyA_code = 'A'; // Default to 'A'
-int keyD_code = 'D'; // Default to 'D'
+int key1_code = 'A'; // Default to 'A'
+int key2_code = 'D'; // Default to 'D'
 unordered_map<int, KeyState> keyStates;
 int activeKey = 0;
 int previousKey = 0;
@@ -37,6 +37,7 @@ int main()
 {
     // Load key bindings from config file
     if (!LoadConfig("config.cfg")) {
+        // Handle failure to load config
     }
 
     // Create a named mutex
@@ -113,7 +114,7 @@ int main()
 
 void handleKeyDown(int keyCode)
 {
-    if (keyCode == keyA_code || keyCode == keyD_code)
+    if (keyCode == key1_code || keyCode == key2_code)
     {
         // get key state
         auto& keyState = keyStates[keyCode];
@@ -141,7 +142,7 @@ void handleKeyDown(int keyCode)
 
 void handleKeyUp(int keyCode)
 {
-    if (keyCode == keyA_code || keyCode == keyD_code)
+    if (keyCode == key1_code || keyCode == key2_code)
     {
         auto& keyState = keyStates[keyCode];
         // to prevent previous key getting stuck, check if it is the called key as well as if it's (not) pressed
@@ -291,10 +292,10 @@ bool LoadConfig(const std::string& filename)
         std::string key;
         int value;
         if (std::getline(iss, key, '=') && (iss >> value)) {
-            if (key == "keyA") {
-                keyA_code = value;
-            } else if (key == "keyD") {
-                keyD_code = value;
+            if (key == "key1") {
+                key1_code = value;
+            } else if (key == "key2") {
+                key2_code = value;
             }
         }
     }
