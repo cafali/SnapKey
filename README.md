@@ -92,8 +92,6 @@ Looking for More Information? Got Questions or Need Help?
 --------------------------------------------------------------------------------------------------
 [<img src="https://github.com/user-attachments/assets/0c6d7564-6471-49f2-9367-64f7bffb7e37" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
 
-## 📄 Pages
-
 - **[About ℹ️](https://github.com/cafali/SnapKey/wiki/About)**  
   Learn about Snapkey, its features, and what it can do for you.
 
