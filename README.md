@@ -88,10 +88,8 @@ Since SnapKey isn’t natively supported on Linux, it’s recommended to check o
 
 ![SpanLin](https://github.com/user-attachments/assets/b47339e8-3ebf-4658-a07e-28c2df22a6c8)
 
-SnapKey Wiki
---------------------------------------------------------------------------------------------------
 Looking for More Information? Got Questions or Need Help?
-
+--------------------------------------------------------------------------------------------------
 [<img src="https://github.com/user-attachments/assets/0c6d7564-6471-49f2-9367-64f7bffb7e37" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
 
 
