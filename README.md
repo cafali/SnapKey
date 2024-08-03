@@ -25,7 +25,7 @@ Download
 - Enhances the precision of counter-strafing movements in games
 - Sticky Keys Feature: keeps track of the state of a key you've pressed down
 - Facilitates smoother transitions between left and right movements without input conflicts
---------------------------------------------------------------------------------------------------
+
 **Here’s how it works:**
 --------------------------------------------------------------------------------------------------
 - When you press and hold down the "A" key, SnapKey remembers it.
