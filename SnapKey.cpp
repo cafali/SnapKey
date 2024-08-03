@@ -16,12 +16,21 @@ struct KeyState
     bool pressed = false;
 };
 
-// Global variables
+// Global variables for key groups
 int key1_code = 'A'; // Default to 'A'
 int key2_code = 'D'; // Default to 'D'
-unordered_map<int, KeyState> keyStates;
-int activeKey = 0;
-int previousKey = 0;
+int key3_code = 'S'; // Default to 'S'
+int key4_code = 'W'; // Default to 'W'
+
+// Key state management for each group
+unordered_map<int, KeyState> keyStates1;
+unordered_map<int, KeyState> keyStates2;
+
+int activeKey1 = 0;
+int previousKey1 = 0;
+int activeKey2 = 0;
+int previousKey2 = 0;
+
 HHOOK hHook = NULL;
 NOTIFYICONDATA nid;
 
@@ -114,25 +123,49 @@ int main()
 
 void handleKeyDown(int keyCode)
 {
+    // Handle key group 1 (key1_code and key2_code)
     if (keyCode == key1_code || keyCode == key2_code)
     {
-        // get key state
-        auto& keyState = keyStates[keyCode];
+        auto& keyState = keyStates1[keyCode];
         if (!keyState.pressed)
         {
-            // set key state + check if key is current key
             keyState.pressed = true;
-            if (activeKey == 0 || activeKey == keyCode) activeKey = keyCode;
-            else 
+            if (activeKey1 == 0 || activeKey1 == keyCode)
             {
-                // set previous key to current key and active to current
-                previousKey = activeKey;
-                activeKey = keyCode;
+                activeKey1 = keyCode;
+            }
+            else
+            {
+                previousKey1 = activeKey1;
+                activeKey1 = keyCode;
 
-                // send keyup input to previous
                 INPUT input = {0};
                 input.type = INPUT_KEYBOARD;
-                input.ki.wVk = previousKey;
+                input.ki.wVk = previousKey1;
+                input.ki.dwFlags = KEYEVENTF_KEYUP;
+                SendInput(1, &input, sizeof(INPUT));
+            }
+        }
+    }
+    // Handle key group 2 (key3_code and key4_code)
+    else if (keyCode == key3_code || keyCode == key4_code)
+    {
+        auto& keyState = keyStates2[keyCode];
+        if (!keyState.pressed)
+        {
+            keyState.pressed = true;
+            if (activeKey2 == 0 || activeKey2 == keyCode)
+            {
+                activeKey2 = keyCode;
+            }
+            else
+            {
+                previousKey2 = activeKey2;
+                activeKey2 = keyCode;
+
+                INPUT input = {0};
+                input.type = INPUT_KEYBOARD;
+                input.ki.wVk = previousKey2;
                 input.ki.dwFlags = KEYEVENTF_KEYUP;
                 SendInput(1, &input, sizeof(INPUT));
             }
@@ -142,26 +175,48 @@ void handleKeyDown(int keyCode)
 
 void handleKeyUp(int keyCode)
 {
+    // Handle key group 1 (key1_code and key2_code)
     if (keyCode == key1_code || keyCode == key2_code)
     {
-        auto& keyState = keyStates[keyCode];
-        // to prevent previous key getting stuck, check if it is the called key as well as if it's (not) pressed
-        if (previousKey == keyCode && !keyState.pressed) previousKey = 0;
-        if (keyState.pressed) 
+        auto& keyState = keyStates1[keyCode];
+        if (previousKey1 == keyCode && !keyState.pressed)
         {
-            // set key state to released
+            previousKey1 = 0;
+        }
+        if (keyState.pressed)
+        {
             keyState.pressed = false;
-            // check if previous key exists and the current key is the one we just released
-            if (activeKey == keyCode && previousKey != 0)
+            if (activeKey1 == keyCode && previousKey1 != 0)
             {
-                // set active to previous and clear previous
-                activeKey = previousKey;
-                previousKey = 0;
+                activeKey1 = previousKey1;
+                previousKey1 = 0;
 
-                // send keydown input to active
                 INPUT input = {0};
                 input.type = INPUT_KEYBOARD;
-                input.ki.wVk = activeKey;
+                input.ki.wVk = activeKey1;
+                SendInput(1, &input, sizeof(INPUT));
+            }
+        }
+    }
+    // Handle key group 2 (key3_code and key4_code)
+    else if (keyCode == key3_code || keyCode == key4_code)
+    {
+        auto& keyState = keyStates2[keyCode];
+        if (previousKey2 == keyCode && !keyState.pressed)
+        {
+            previousKey2 = 0;
+        }
+        if (keyState.pressed)
+        {
+            keyState.pressed = false;
+            if (activeKey2 == keyCode && previousKey2 != 0)
+            {
+                activeKey2 = previousKey2;
+                previousKey2 = 0;
+
+                INPUT input = {0};
+                input.type = INPUT_KEYBOARD;
+                input.ki.wVk = activeKey2;
                 SendInput(1, &input, sizeof(INPUT));
             }
         }
@@ -296,6 +351,10 @@ bool LoadConfig(const std::string& filename)
                 key1_code = value;
             } else if (key == "key2") {
                 key2_code = value;
+            } else if (key == "key3") {
+                key3_code = value;
+            } else if (key == "key4") {
+                key4_code = value;
             }
         }
     }
