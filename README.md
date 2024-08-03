@@ -20,11 +20,11 @@ Download
 - Lightweight and open-source
 - Compatible with all keyboards
 - Accessible via the system tray
-- Facilitates smoother transitions between left and right movements without input conflicts
-- Enhances the precision of counter-strafing movements in games
+- Supports 4 keys shared across 2 groups (AD / WS)
 - Allows key rebinding using ASCII codes specified in the configuration file
+- Enhances the precision of counter-strafing movements in games
 - Sticky Keys Feature: keeps track of the state of a key you've pressed down
-
+- Facilitates smoother transitions between left and right movements without input conflicts
 --------------------------------------------------------------------------------------------------
 **Here’s how it works:**
 --------------------------------------------------------------------------------------------------
