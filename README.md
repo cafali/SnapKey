@@ -32,13 +32,9 @@ Download
 - If you then press the "D" key while still holding down "A," SnapKey automatically releases the "A" key for you.
 - The same happens if you press "A" while holding "D" — SnapKey releases the "D" key.
 
-**Preventing simultaneous pressing of both the A and D keys**
+**SnapKey prevents simultaneous movement key conflicts (AD / WS)**
 
-- In many FPS games, pressing both the A and D keys simultaneously typically results in the game recognizing conflicting inputs. SnapKey automatically releases the previously held key when a new key input is detected.
-
-![test](https://github.com/user-attachments/assets/20c0bad9-a33b-4c5a-8f85-bb8a21f0d951)
-
-
+- In many FPS games, pressing both the A and D keys simultaneously typically results in the game recognizing conflicting inputs. SnapKey automatically releases the previously held key when a new key input is detected. (AD / WS)
 
 **Sticky Keys**
 
