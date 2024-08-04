@@ -40,10 +40,10 @@ Download
 **Sticky Keys**
 
 - Sticky Keys is a feature that keeps track of the state of a key you've pressed down. For example, if you 
-hold down the "A" key and tap the "D" key repeatedly, each press of "D" will temporarily override 
-the "A" key. When you release the "D" key, the action associated with the "A" key will resume, as 
-long as you're still holding it down. The same principle applies if you start with "D" held down and 
-press "A" instead. 
+hold down the **"A"** key and tap the **"D"** key repeatedly, each press of **"D"** will temporarily override 
+the **"A"** key. When you release the **"D"** key, the action associated with the **"A"** key will resume, as 
+long as you're still holding it down. The same principle applies if you start with **"D"** held down and 
+press **"A"** instead. 
 
 ![Snapkey](https://github.com/user-attachments/assets/504ffa5e-50d3-4a77-9016-70f22d143cb1)
 
