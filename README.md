@@ -34,7 +34,7 @@ Download
 
 **SnapKey prevents simultaneous movement key conflicts (AD / WS)**
 
-- In many FPS games, pressing both the A and D keys simultaneously typically results in the game recognizing conflicting inputs. SnapKey automatically releases the previously held key when a new key input is detected.
+- In many FPS games, pressing both the **"A"** and **"D"** keys simultaneously typically results in the game recognizing conflicting inputs. SnapKey automatically releases the previously held key when a new key input is detected.
 - The keys are separated into two different groups: A/D and W/S. In each group, **"A"** cancels out **"D"** and vice versa, while the same applies to **"W"** and **"S"**. These groups do not interfere with each other and work separately.
 
 **Sticky Keys**
