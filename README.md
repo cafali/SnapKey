@@ -25,7 +25,7 @@ Download
 - Enhances the precision of counter-strafing movements in games
 - Sticky Keys Feature: keeps track of the state of a key you've pressed down
 - Facilitates smoother transitions between left and right movements without input conflicts
-- AutoHotkey is not used by SnapKey; it relies solely on Windows API functions
+- Does not use AutoHotkey; relies solely on Windows API functions
 
 **Here’s how it works:**
 --------------------------------------------------------------------------------------------------
