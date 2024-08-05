@@ -96,6 +96,9 @@ Looking for More Information? Got Questions or Need Help?
 - **[Code Breakdown 🧠](https://github.com/cafali/SnapKey/wiki/Code-Breakdown)**  
   Dive into the details of SnapKey’s code structure.
 
+- **[Compatibility List 🎮](https://github.com/cafali/SnapKey/wiki/Compatibility-List)**  
+  Games that work with SnapKey and those that don't.
+
 - **[FAQ❓](https://github.com/cafali/SnapKey/wiki/FAQ)**  
   Find answers to common questions about Snapkey.
 
@@ -119,6 +122,7 @@ Looking for More Information? Got Questions or Need Help?
 
 - **[Updates 🔄](https://github.com/cafali/SnapKey/wiki/Updates)**  
   SnapKey Version Updates.
+
 
 
 
