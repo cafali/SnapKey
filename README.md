@@ -86,7 +86,7 @@ Since SnapKey isn’t natively supported on Linux, it’s recommended to check o
 
 ![SpanLin](https://github.com/user-attachments/assets/b47339e8-3ebf-4658-a07e-28c2df22a6c8)
 
-**<img src="https://github.com/user-attachments/assets/041f7b09-7a0e-4904-b936-daee0605e476" alt="Sourceforge logo" width="20%">**
+**<img src="https://github.com/user-attachments/assets/041f7b09-7a0e-4904-b936-daee0605e476" alt="Sourceforge logo" width="25%">**
 --------------------------------------------------------------------------------------------------
 [![Download SnapKey](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/snapkey/files/latest/download)
 
