@@ -78,7 +78,8 @@ Close SnapKey
 --------------------------------------------------------------------------------------------------
    - Right-click the SnapKey icon in the system tray and select "Exit SnapKey"
 
-![exit](https://github.com/user-attachments/assets/d9266b0c-75f0-4c07-9d55-4924a2515b82)
+![image](https://github.com/user-attachments/assets/d92108b8-4bb8-458c-8c95-509cc57f3a6d)
+
 
 **Linux Support**
 --------------------------------------------------------------------------------------------------
