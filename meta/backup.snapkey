@@ -5,12 +5,12 @@ key4=87
 
 # After applying the changes, please restart SnapKey.
 # Change the number, for example, for "G" - Key1=71
-# ---------------------------------------------------------
-# A D / W S
-# for AZERTY - Key1=81 Key2=68 / Key3=90 Key4=82
-# for QWERTZ - Key1=65 Key2=68 / Key3=83 Key4=87
-# for QWERTY - Key1=65 Key2=68 / Key3=83 Key4=87
-# ---------------------------------------------------------
+
+# -------------------------------------------------------------
+# Q D / Z S     AZERTY   Key1=81 Key2=68 / Key3=90 Key4=83
+# A D / S W     QWERTY   Key1=65 Key2=68 / Key3=83 Key4=87
+# A D / S W     QWERTZ   Key1=65 Key2=68 / Key3=83 Key4=87
+# -------------------------------------------------------------
 
 # Default Keys:
 
@@ -18,6 +18,9 @@ key4=87
 # D - 68
 # S - 83
 # W - 87 
+
+# Z - 90
+# Q - 81
 
 # ASCII Code List:
 
