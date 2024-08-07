@@ -1,3 +1,5 @@
+// SnapKey 1.1.9 src
+
 #include <windows.h>
 #include <shellapi.h>
 #include <fstream>
@@ -9,6 +11,8 @@ using namespace std;
 
 #define ID_TRAY_APP_ICON                1001
 #define ID_TRAY_EXIT_CONTEXT_MENU_ITEM  3000
+#define ID_TRAY_VERSION_INFO            3001
+#define ID_TRAY_REBIND_KEYS             3002
 #define WM_TRAYICON                     (WM_USER + 1)
 
 struct KeyState
@@ -16,11 +20,11 @@ struct KeyState
     bool pressed = false;
 };
 
-// Global variables for key groups
-int key1_code = 'A'; // Default to 'A'
-int key2_code = 'D'; // Default to 'D'
-int key3_code = 'S'; // Default to 'S'
-int key4_code = 'W'; // Default to 'W'
+// Global variables for key groups (A/D & S/W)
+int key1_code = 'A';
+int key2_code = 'D'; 
+int key3_code = 'S'; 
+int key4_code = 'W'; 
 
 // Key state management for each group
 unordered_map<int, KeyState> keyStates1;
@@ -41,6 +45,7 @@ void InitNotifyIconData(HWND hwnd);
 bool LoadConfig(const std::string& filename);
 void CreateDefaultConfig(const std::string& filename); // Declaration
 void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename); // Declaration
+std::string GetVersionInfo(); // Declaration
 
 int main()
 {
@@ -270,6 +275,18 @@ void InitNotifyIconData(HWND hwnd)
     Shell_NotifyIcon(NIM_ADD, &nid);
 }
 
+std::string GetVersionInfo()
+{
+    std::ifstream versionFile("meta/version");
+    if (!versionFile.is_open()) {
+        return "Version info not available";
+    }
+
+    std::string version;
+    std::getline(versionFile, version);
+    return version.empty() ? "Version info not available" : version;
+}
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch (msg)
@@ -283,6 +300,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
             // Create a context menu
             HMENU hMenu = CreatePopupMenu();
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_REBIND_KEYS, TEXT("Rebind Keys"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_VERSION_INFO, TEXT("Version Info"));
             AppendMenu(hMenu, MF_STRING, ID_TRAY_EXIT_CONTEXT_MENU_ITEM, TEXT("Exit SnapKey"));
 
             // Display the context menu
@@ -292,9 +311,23 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_COMMAND:
-        if (LOWORD(wParam) == ID_TRAY_EXIT_CONTEXT_MENU_ITEM)
+        switch (LOWORD(wParam))
         {
+        case ID_TRAY_EXIT_CONTEXT_MENU_ITEM:
             PostQuitMessage(0);
+            break;
+        case ID_TRAY_VERSION_INFO:
+            {
+                std::string versionInfo = GetVersionInfo();
+                MessageBox(hwnd, versionInfo.c_str(), TEXT("Version Info"), MB_OK);
+            }
+            break;
+        case ID_TRAY_REBIND_KEYS:
+            {
+                // Open the config file with the default editor
+                ShellExecute(NULL, TEXT("open"), TEXT("config.cfg"), NULL, NULL, SW_SHOWNORMAL);
+            }
+            break;
         }
         break;
 
