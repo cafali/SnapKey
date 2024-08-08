@@ -23,7 +23,7 @@ Download
 - Facilitates smoother transitions between left and right movements without input conflicts 🚀
 - Does not use AutoHotkey or similar tools; its features rely solely on Windows API functions 🛡️
 
-**Here’s how it works:**
+**SnapKey in Action**
 --------------------------------------------------------------------------------------------------
 ![Explain](https://github.com/user-attachments/assets/7d11c221-33d8-43ea-839b-bfe276332593)
 
