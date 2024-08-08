@@ -51,7 +51,7 @@ press **"A"** instead.
 
 **Enhanced precision of counter-strafing**
 
-- Automatically releases a previously held key when a new key (A/D) is pressed.
+- Automatically releases a previously held key when a new key (A/D) & (W/S) is pressed.
 
 <img src="https://github.com/user-attachments/assets/4453aba4-b9bc-45e8-8a80-80caad39347b" width="600" height="338" alt="STRAFE">
 
