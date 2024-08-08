@@ -17,7 +17,7 @@ Download
 - Compatible with all keyboards ✅
 - Accessible via the system tray 🖥️
 - Supports 4 keys shared across 2 groups (AD / WS) 🔄
-- Allows key rebinding using ASCII codes specified in the configuration file 🛠️
+- Allows [key rebinding](https://github.com/cafali/SnapKey/wiki/Rebinding-Keys) using ASCII codes specified in the configuration file 🛠️
 - Enhances the precision of counter-strafing movements in games 🎯
 - Sticky Keys Feature: tracks the state of a pressed key ⌨️
 - Facilitates smoother transitions between left and right movements without input conflicts 🚀
