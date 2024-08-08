@@ -25,6 +25,9 @@ Download
 
 **Here’s how it works:**
 --------------------------------------------------------------------------------------------------
+![expalined](https://github.com/user-attachments/assets/a093b003-f73e-41d4-ac99-bd5e155c15dd)
+
+
 - When you press and hold down the **"A"** key, SnapKey remembers it.
 - If you then press the **"D"** key while still holding down **"A"** SnapKey automatically releases the **"A"** key for you.
 - The same happens if you press **"A"** while holding **"D"** — SnapKey releases the **"D"** key.
@@ -52,6 +55,8 @@ press **"A"** instead.
 
 **Quick Guide to Using SnapKey**
 --------------------------------------------------------------------------------------------------
+![use](https://github.com/user-attachments/assets/ddab1918-5a57-41ed-ae68-90376619d51b)
+
 
 1. Launch SnapKey:
    - Open SnapKey
