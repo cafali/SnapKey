@@ -58,8 +58,8 @@ press **"A"** instead.
 
 
 
-1. Launch SnapKey:
-   - Open SnapKey
+1. Get SnapKey:
+   - [Download](https://github.com/cafali/SnapKey/releases), Unzip and Launch SnapKey.exe
 
 <img width="417" alt="image" src="https://github.com/user-attachments/assets/e4606577-6edb-4c12-ad6e-9e5ee01ba18f">
 
