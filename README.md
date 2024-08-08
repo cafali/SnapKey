@@ -78,7 +78,7 @@ press **"A"** instead.
   
    
 4. [Rebind Keys](https://github.com/cafali/SnapKey/wiki/Rebinding-Keys) (Optional):
-   - Rebind your keys if you're using a nonstandard keyboard layout or if you want to map different keys.
+   - Rebind your keys if you're using a nonstandard keyboard layout or if you want to map different keys
 
 Close SnapKey
 --------------------------------------------------------------------------------------------------
