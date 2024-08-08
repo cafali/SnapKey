@@ -75,6 +75,9 @@ press **"A"** instead.
 
 3. You're All Set:
    - SnapKey is now running and is ready to use
+  
+
+4. [Rebind Keys](https://github.com/cafali/SnapKey/wiki/Rebinding-Keys) (Optional) 
 
 Close SnapKey
 --------------------------------------------------------------------------------------------------
