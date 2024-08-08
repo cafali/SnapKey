@@ -61,7 +61,8 @@ press **"A"** instead.
 1. Launch SnapKey:
    - Open SnapKey
 
-![image](https://github.com/user-attachments/assets/b420fe49-bd7d-432d-a68f-1e66f468a648)
+<img width="417" alt="image" src="https://github.com/user-attachments/assets/e4606577-6edb-4c12-ad6e-9e5ee01ba18f">
+
 
 
 
