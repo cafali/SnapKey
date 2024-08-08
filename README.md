@@ -3,13 +3,9 @@
 
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
-SnapKey offers a simple and intuitive alternative to the Razer Snap Tap function, making it accessible across all keyboards!
+SnapKey provides a simple and user-friendly alternative to the Razer Snap Tap function, making it accessible across all keyboards!
 
-SnapKey is a lightweight open source utility that runs in the system tray and is designed to monitor user inputs for the WASD keys, without engaging with any game files. 
-
-Its primary function is to detect when these keys are pressed and promptly cancel any previously held commands for them. 
-
-This ensures that inputs are responsive and accurate. It manages the WASD key inputs; you can rebind the keys at any time in the config file using the provided ASCII codes.
+SnapKey is a lightweight, open-source tool that operates from the system tray and is designed to track inputs from the WASD keys, without interfering with any game files. Its main role is to recognize when these keys are pressed and automatically release any previously engaged commands for them. This guarantees responsive and precise input handling. SnapKey handles the WASD keys by default and lets you rebind them to your liking via the config file.
 
 Download
 --------------------------------------------------------------------------------------------------
