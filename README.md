@@ -13,16 +13,15 @@ Download
 
 **SnapKey Features**
 --------------------------------------------------------------------------------------------------
-
-- Lightweight and open-source
-- Compatible with all keyboards
-- Accessible via the system tray
-- Supports 4 keys shared across 2 groups (AD / WS)
-- Allows key rebinding using ASCII codes specified in the configuration file
-- Enhances the precision of counter-strafing movements in games
-- Sticky Keys Feature: keeps track of the state of a key you've pressed down
-- Facilitates smoother transitions between left and right movements without input conflicts
-- Does not use AutoHotkey or similar tools; its features rely solely on Windows API functions
+- Lightweight and open-source 🌟
+- Compatible with all keyboards ✅
+- Accessible via the system tray 🖥️
+- Supports 4 keys shared across 2 groups (AD / WS) 🔄
+- Allows key rebinding using ASCII codes specified in the configuration file 🛠️
+- Enhances the precision of counter-strafing movements in games 🎯
+- Sticky Keys Feature: tracks the state of a pressed key ⌨️
+- Facilitates smoother transitions between left and right movements without input conflicts 🚀
+- Does not use AutoHotkey or similar tools; its features rely solely on Windows API functions 🛡️
 
 **Here’s how it works:**
 --------------------------------------------------------------------------------------------------
