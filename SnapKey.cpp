@@ -7,6 +7,8 @@
 #include <string>
 #include <unordered_map>
 
+#include <regex>
+
 using namespace std;
 
 #define ID_TRAY_APP_ICON                1001
@@ -17,25 +19,23 @@ using namespace std;
 
 struct KeyState
 {
-    bool pressed = false;
+    bool registered = false;
+    bool keyDown = false;
+    int group;
+    bool simulated = false;
 };
 
-// Global variables for key groups (A/D & S/W)
-int key1_code = 'A';
-int key2_code = 'D'; 
-int key3_code = 'S'; 
-int key4_code = 'W'; 
+struct GroupState
+{
+    int previousKey;
+    int activeKey;
+};
 
-// Key state management for each group
-unordered_map<int, KeyState> keyStates1;
-unordered_map<int, KeyState> keyStates2;
-
-int activeKey1 = 0;
-int previousKey1 = 0;
-int activeKey2 = 0;
-int previousKey2 = 0;
+unordered_map<int, GroupState> GroupInfo;
+unordered_map<int, KeyState> KeyInfo;
 
 HHOOK hHook = NULL;
+HANDLE hMutex = NULL;
 NOTIFYICONDATA nid;
 
 // Function declarations
@@ -46,16 +46,17 @@ bool LoadConfig(const std::string& filename);
 void CreateDefaultConfig(const std::string& filename); // Declaration
 void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename); // Declaration
 std::string GetVersionInfo(); // Declaration
+void SendKey(int target, bool keyDown);
 
 int main()
 {
     // Load key bindings from config file
     if (!LoadConfig("config.cfg")) {
-        // Handle failure to load config
+        return 1;
     }
 
     // Create a named mutex
-    HANDLE hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
+    hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
         MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("SnapKey"), MB_ICONINFORMATION | MB_OK);
@@ -71,8 +72,8 @@ int main()
 
     if (!RegisterClassEx(&wc)) {
         MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
-        ReleaseMutex(hMutex); 
-        CloseHandle(hMutex); 
+        ReleaseMutex(hMutex);
+        CloseHandle(hMutex);
         return 1;
     }
 
@@ -87,8 +88,8 @@ int main()
 
     if (hwnd == NULL) {
         MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
-        ReleaseMutex(hMutex); 
-        CloseHandle(hMutex); 
+        ReleaseMutex(hMutex);
+        CloseHandle(hMutex);
         return 1;
     }
 
@@ -128,121 +129,95 @@ int main()
 
 void handleKeyDown(int keyCode)
 {
-    // Handle key group 1 (key1_code and key2_code)
-    if (keyCode == key1_code || keyCode == key2_code)
+    KeyState& currentKeyInfo = KeyInfo[keyCode];
+    GroupState& currentGroupInfo = GroupInfo[currentKeyInfo.group];
+    if (!currentKeyInfo.keyDown)
     {
-        auto& keyState = keyStates1[keyCode];
-        if (!keyState.pressed)
+        currentKeyInfo.keyDown = true;
+        SendKey(keyCode, true);
+        if (currentGroupInfo.activeKey == 0 || currentGroupInfo.activeKey == keyCode)
         {
-            keyState.pressed = true;
-            if (activeKey1 == 0 || activeKey1 == keyCode)
-            {
-                activeKey1 = keyCode;
-            }
-            else
-            {
-                previousKey1 = activeKey1;
-                activeKey1 = keyCode;
-
-                INPUT input = {0};
-                input.type = INPUT_KEYBOARD;
-                input.ki.wVk = previousKey1;
-                input.ki.dwFlags = KEYEVENTF_KEYUP;
-                SendInput(1, &input, sizeof(INPUT));
-            }
+            currentGroupInfo.activeKey = keyCode;
         }
-    }
-    // Handle key group 2 (key3_code and key4_code)
-    else if (keyCode == key3_code || keyCode == key4_code)
-    {
-        auto& keyState = keyStates2[keyCode];
-        if (!keyState.pressed)
+        else
         {
-            keyState.pressed = true;
-            if (activeKey2 == 0 || activeKey2 == keyCode)
-            {
-                activeKey2 = keyCode;
-            }
-            else
-            {
-                previousKey2 = activeKey2;
-                activeKey2 = keyCode;
+            currentGroupInfo.previousKey = currentGroupInfo.activeKey;
+            currentGroupInfo.activeKey = keyCode;
 
-                INPUT input = {0};
-                input.type = INPUT_KEYBOARD;
-                input.ki.wVk = previousKey2;
-                input.ki.dwFlags = KEYEVENTF_KEYUP;
-                SendInput(1, &input, sizeof(INPUT));
-            }
+            SendKey(currentGroupInfo.previousKey, false);
         }
     }
 }
 
 void handleKeyUp(int keyCode)
 {
-    // Handle key group 1 (key1_code and key2_code)
-    if (keyCode == key1_code || keyCode == key2_code)
+    KeyState& currentKeyInfo = KeyInfo[keyCode];
+    GroupState& currentGroupInfo = GroupInfo[currentKeyInfo.group];
+    if (currentGroupInfo.previousKey == keyCode && !currentKeyInfo.keyDown)
     {
-        auto& keyState = keyStates1[keyCode];
-        if (previousKey1 == keyCode && !keyState.pressed)
-        {
-            previousKey1 = 0;
-        }
-        if (keyState.pressed)
-        {
-            keyState.pressed = false;
-            if (activeKey1 == keyCode && previousKey1 != 0)
-            {
-                activeKey1 = previousKey1;
-                previousKey1 = 0;
-
-                INPUT input = {0};
-                input.type = INPUT_KEYBOARD;
-                input.ki.wVk = activeKey1;
-                SendInput(1, &input, sizeof(INPUT));
-            }
-        }
+        currentGroupInfo.previousKey = 0;
     }
-    // Handle key group 2 (key3_code and key4_code)
-    else if (keyCode == key3_code || keyCode == key4_code)
+    if (currentKeyInfo.keyDown)
     {
-        auto& keyState = keyStates2[keyCode];
-        if (previousKey2 == keyCode && !keyState.pressed)
+        currentKeyInfo.keyDown = false;
+        if (currentGroupInfo.activeKey == keyCode && currentGroupInfo.previousKey != 0)
         {
-            previousKey2 = 0;
-        }
-        if (keyState.pressed)
-        {
-            keyState.pressed = false;
-            if (activeKey2 == keyCode && previousKey2 != 0)
-            {
-                activeKey2 = previousKey2;
-                previousKey2 = 0;
+            SendKey(keyCode, false);
 
-                INPUT input = {0};
-                input.type = INPUT_KEYBOARD;
-                input.ki.wVk = activeKey2;
-                SendInput(1, &input, sizeof(INPUT));
-            }
+            currentGroupInfo.activeKey = currentGroupInfo.previousKey;
+            currentGroupInfo.previousKey = 0;
+
+            SendKey(currentGroupInfo.activeKey, true);
+        } 
+        else 
+        {
+            currentGroupInfo.previousKey = 0;
+            if (currentGroupInfo.activeKey == keyCode) currentGroupInfo.activeKey = 0;
+            SendKey(keyCode, false);
         }
     }
 }
 
+void SendKey(int target, bool keyDown)
+{
+    KeyInfo[target].simulated = true;
+    INPUT input = {0};
+    input.type = INPUT_KEYBOARD;
+    input.ki.wVk = target;
+    if (!keyDown)
+    {
+        input.ki.dwFlags = KEYEVENTF_KEYUP;
+    }
+    SendInput(1, &input, sizeof(INPUT));
+}
+
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    if (nCode == HC_ACTION)
+    if (nCode >= 0)
     {
         KBDLLHOOKSTRUCT *pKeyBoard = (KBDLLHOOKSTRUCT *)lParam;
-        switch (wParam)
+        if (KeyInfo[pKeyBoard -> vkCode].registered)
         {
-            case WM_KEYDOWN:
-                handleKeyDown(pKeyBoard->vkCode);
-                break;
-            case WM_KEYUP:
-                handleKeyUp(pKeyBoard->vkCode);
-                break;
-            default:
-                break;
+            if (wParam == WM_KEYDOWN) 
+            {
+                if (!KeyInfo[pKeyBoard -> vkCode].simulated)
+                {
+                    handleKeyDown(pKeyBoard -> vkCode);
+                    return 1;
+                } else {
+                    KeyInfo[pKeyBoard -> vkCode].simulated = false;
+                }
+            }
+            if (wParam == WM_KEYUP) 
+            {
+                if (!KeyInfo[pKeyBoard -> vkCode].simulated)
+                {
+                    handleKeyUp(pKeyBoard -> vkCode);
+                    return 1;
+                } else {
+                    KeyInfo[pKeyBoard -> vkCode].simulated = false;
+                }
+            }
         }
     }
     return CallNextHookEx(hHook, nCode, wParam, lParam);
@@ -374,23 +349,33 @@ bool LoadConfig(const std::string& filename)
         return false;
     }
 
-    std::string line;
-    while (std::getline(configFile, line)) {
-        std::istringstream iss(line);
-        std::string key;
+    string line;
+    int id = 0;
+    while (getline(configFile, line)) {
+        istringstream iss(line);
+        string key;
         int value;
-        if (std::getline(iss, key, '=') && (iss >> value)) {
-            if (key == "key1") {
-                key1_code = value;
-            } else if (key == "key2") {
-                key2_code = value;
-            } else if (key == "key3") {
-                key3_code = value;
-            } else if (key == "key4") {
-                key4_code = value;
+        regex secPat(R"(\s*\[Group\]\s*)");
+        if (regex_match(line, secPat)) 
+        {
+            id++;
+        }
+        else if (getline(iss, key, '=') && (iss >> value)) 
+        {
+            if (key.find("key") != string::npos) 
+            {
+                if (!KeyInfo[value].registered)
+                {
+                    KeyInfo[value].registered = true;
+                    KeyInfo[value].group = id;
+                } 
+                else
+                {
+                    MessageBox(NULL, TEXT("Config has repeating keys in different groups -- aborting."), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+                    return false;
+                }
             }
         }
     }
-
     return true;
 }
