@@ -48,6 +48,10 @@ void RestoreConfigFromBackup(const std::string& backupFilename, const std::strin
 std::string GetVersionInfo(); // Declaration
 void SendKey(int target, bool keyDown);
 
+bool isSimulatedKeyEvent(DWORD flags) {
+    return flags & 0x10;
+}
+
 int main()
 {
     // Load key bindings from config file
@@ -178,15 +182,21 @@ void handleKeyUp(int keyCode)
     }
 }
 
-void SendKey(int target, bool keyDown)
+void SendKey(int targetKey, bool keyDown)
 {
-    KeyInfo[target].simulated = true;
     INPUT input = {0};
+    SHORT virtualKey = VkKeyScan(char(targetKey));
+    DWORD flags = KEYEVENTF_SCANCODE;
+    input.ki.wVk = targetKey;
+    input.ki.wScan = MapVirtualKey((UINT) char(targetKey), 0);
     input.type = INPUT_KEYBOARD;
-    input.ki.wVk = target;
     if (!keyDown)
     {
-        input.ki.dwFlags = KEYEVENTF_KEYUP;
+        input.ki.dwFlags = flags | KEYEVENTF_KEYUP;
+    }
+    else 
+    {
+        input.ki.dwFlags = flags;
     }
     SendInput(1, &input, sizeof(INPUT));
 }
@@ -196,26 +206,18 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
     if (nCode >= 0)
     {
         KBDLLHOOKSTRUCT *pKeyBoard = (KBDLLHOOKSTRUCT *)lParam;
-        if (KeyInfo[pKeyBoard -> vkCode].registered)
-        {
-            if (wParam == WM_KEYDOWN) 
+        if (!isSimulatedKeyEvent(pKeyBoard -> flags)) {
+            if (KeyInfo[pKeyBoard -> vkCode].registered)
             {
-                if (!KeyInfo[pKeyBoard -> vkCode].simulated)
+                if (wParam == WM_KEYDOWN) 
                 {
                     handleKeyDown(pKeyBoard -> vkCode);
                     return 1;
-                } else {
-                    KeyInfo[pKeyBoard -> vkCode].simulated = false;
                 }
-            }
-            if (wParam == WM_KEYUP) 
-            {
-                if (!KeyInfo[pKeyBoard -> vkCode].simulated)
+                if (wParam == WM_KEYUP) 
                 {
                     handleKeyUp(pKeyBoard -> vkCode);
                     return 1;
-                } else {
-                    KeyInfo[pKeyBoard -> vkCode].simulated = false;
                 }
             }
         }
