@@ -16,4 +16,3 @@ if (WIN32)
         LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup"
     )
 endif()
-
