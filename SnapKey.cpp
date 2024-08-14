@@ -1,4 +1,4 @@
-// SnapKey 1.1.9 src
+// SnapKey 1.2.0 src
 
 #include <windows.h>
 #include <shellapi.h>
