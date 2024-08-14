@@ -48,10 +48,6 @@ void RestoreConfigFromBackup(const std::string& backupFilename, const std::strin
 std::string GetVersionInfo(); // Declaration
 void SendKey(int target, bool keyDown);
 
-bool isSimulatedKeyEvent(DWORD flags) {
-    return flags & 0x10;
-}
-
 int main()
 {
     // Load key bindings from config file
@@ -182,22 +178,19 @@ void handleKeyUp(int keyCode)
     }
 }
 
+bool isSimulatedKeyEvent(DWORD flags) {
+    return flags & 0x10;
+}
+
 void SendKey(int targetKey, bool keyDown)
 {
     INPUT input = {0};
-    SHORT virtualKey = VkKeyScan(char(targetKey));
-    DWORD flags = KEYEVENTF_SCANCODE;
     input.ki.wVk = targetKey;
     input.ki.wScan = MapVirtualKey((UINT) char(targetKey), 0);
     input.type = INPUT_KEYBOARD;
-    if (!keyDown)
-    {
-        input.ki.dwFlags = flags | KEYEVENTF_KEYUP;
-    }
-    else 
-    {
-        input.ki.dwFlags = flags;
-    }
+
+    DWORD flags = KEYEVENTF_SCANCODE;
+    input.ki.dwFlags = keyDown ? flags : flags | KEYEVENTF_KEYUP;
     SendInput(1, &input, sizeof(INPUT));
 }
 
@@ -209,16 +202,9 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         if (!isSimulatedKeyEvent(pKeyBoard -> flags)) {
             if (KeyInfo[pKeyBoard -> vkCode].registered)
             {
-                if (wParam == WM_KEYDOWN) 
-                {
-                    handleKeyDown(pKeyBoard -> vkCode);
-                    return 1;
-                }
-                if (wParam == WM_KEYUP) 
-                {
-                    handleKeyUp(pKeyBoard -> vkCode);
-                    return 1;
-                }
+                if (wParam == WM_KEYDOWN) handleKeyDown(pKeyBoard -> vkCode);
+                if (wParam == WM_KEYUP) handleKeyUp(pKeyBoard -> vkCode);
+                return 1;
             }
         }
     }
