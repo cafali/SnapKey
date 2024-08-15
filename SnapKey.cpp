@@ -359,7 +359,7 @@ bool LoadConfig(const std::string& filename)
                 }
                 else
                 {
-                    MessageBox(NULL, TEXT("Config has repeating keys in different groups -- aborting."), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+                    MessageBox(NULL, TEXT("config.cfg contains duplicate keys across various groups, please review and correct the setup."), TEXT("SnapKey Error"), MB_ICONEXCLAMATION | MB_OK);
                     return false;
                 }
             }
