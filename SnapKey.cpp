@@ -6,7 +6,6 @@
 #include <sstream>
 #include <string>
 #include <unordered_map>
-
 #include <regex>
 
 using namespace std;
@@ -186,7 +185,7 @@ void SendKey(int targetKey, bool keyDown)
 {
     INPUT input = {0};
     input.ki.wVk = targetKey;
-    input.ki.wScan = MapVirtualKey((UINT) char(targetKey), 0);
+    input.ki.wScan = MapVirtualKey(targetKey, 0);
     input.type = INPUT_KEYBOARD;
 
     DWORD flags = KEYEVENTF_SCANCODE;
