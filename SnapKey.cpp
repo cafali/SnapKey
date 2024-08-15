@@ -168,8 +168,8 @@ void handleKeyUp(int keyCode)
             currentGroupInfo.previousKey = 0;
 
             SendKey(currentGroupInfo.activeKey, true);
-        } 
-        else 
+        }
+        else
         {
             currentGroupInfo.previousKey = 0;
             if (currentGroupInfo.activeKey == keyCode) currentGroupInfo.activeKey = 0;
@@ -202,8 +202,8 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         if (!isSimulatedKeyEvent(pKeyBoard -> flags)) {
             if (KeyInfo[pKeyBoard -> vkCode].registered)
             {
-                if (wParam == WM_KEYDOWN) handleKeyDown(pKeyBoard -> vkCode);
-                if (wParam == WM_KEYUP) handleKeyUp(pKeyBoard -> vkCode);
+                if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) handleKeyDown(pKeyBoard -> vkCode);
+                if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP) handleKeyUp(pKeyBoard -> vkCode);
                 return 1;
             }
         }
@@ -344,19 +344,19 @@ bool LoadConfig(const std::string& filename)
         string key;
         int value;
         regex secPat(R"(\s*\[Group\]\s*)");
-        if (regex_match(line, secPat)) 
+        if (regex_match(line, secPat))
         {
             id++;
         }
-        else if (getline(iss, key, '=') && (iss >> value)) 
+        else if (getline(iss, key, '=') && (iss >> value))
         {
-            if (key.find("key") != string::npos) 
+            if (key.find("key") != string::npos)
             {
                 if (!KeyInfo[value].registered)
                 {
                     KeyInfo[value].registered = true;
                     KeyInfo[value].group = id;
-                } 
+                }
                 else
                 {
                     MessageBox(NULL, TEXT("Config has repeating keys in different groups -- aborting."), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
