@@ -137,7 +137,23 @@ Looking for More Information? Got Questions or Need Help?
 
 - **[Updates 🔄](https://github.com/cafali/SnapKey/wiki/Updates)**  
   SnapKey Version Updates.
+----
 
+<p align="center">
+  SnapKey by
+</p>
+
+<p align="center">
+  <a href="https://github.com/cafali">@cafali</a> 
+  <a href="https://github.com/minteeaa">@minteeaa</a> 
+  <a href="https://github.com/Yaw-Dev">@Yaw-Dev</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/cafali/Snapkey/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=cafali/Snapkey" />
+  </a>
+</p>
 
 
 
