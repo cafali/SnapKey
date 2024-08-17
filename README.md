@@ -9,6 +9,10 @@ SnapKey is a lightweight, open-source tool that operates from the system tray an
 
 **Need More Info on SnapKey?** Visit the [**SnapKey Wiki**](https://github.com/cafali/SnapKey/wiki)
 
+[![COMPATIBLE](https://github.com/user-attachments/assets/069a7a23-cfe4-47eb-8ac2-05872fcc2028)](https://github.com/cafali/SnapKey/wiki/Compatibility-List)
+
+
+
 Download
 --------------------------------------------------------------------------------------------------
 **[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases)**
