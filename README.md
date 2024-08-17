@@ -99,7 +99,9 @@ Close SnapKey
 --------------------------------------------------------------------------------------------------
 Since SnapKey isn’t natively supported on Linux, it’s recommended to check out @Dillacorn's guide on **[running SnapKey on Linux](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)**.
 
-![SpanLin](https://github.com/user-attachments/assets/b47339e8-3ebf-4658-a07e-28c2df22a6c8)
+[![LINUX baner](https://github.com/user-attachments/assets/794a16ed-b0ab-4320-a680-52bda1ca0fd1)](https://github.com/cafali/SnapKey/wiki/Setup-Linux)
+
+
 
 **<img src="https://github.com/user-attachments/assets/041f7b09-7a0e-4904-b936-daee0605e476" alt="Sourceforge logo" width="25%">**
 --------------------------------------------------------------------------------------------------
