@@ -1,5 +1,5 @@
 
-![testsnap](https://github.com/user-attachments/assets/e9a23ba9-d394-4711-abfc-994932605d86)
+[![testsnap](https://github.com/user-attachments/assets/e9a23ba9-d394-4711-abfc-994932605d86)](https://github.com/cafali/SnapKey/releases)
 
 **About SnapKey**
 --------------------------------------------------------------------------------------------------
