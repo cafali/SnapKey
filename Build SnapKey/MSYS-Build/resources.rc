@@ -1,0 +1,32 @@
+#include <windows.h>
+
+// Icon resource
+IDI_ICON1 ICON "snapkey.ico"
+
+// Version information
+1 VERSIONINFO
+FILEVERSION 0,0,0,0
+PRODUCTVERSION 0,0,0,0
+FILEOS 0x40004
+FILETYPE 0x1
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "040904B0"
+        {
+            VALUE "FileDescription", "SnapKey"
+            VALUE "InternalName", "SnapKey.exe"
+            VALUE "OriginalFilename", "SnapKey.exe"
+            VALUE "CompanyName", "SnapKey"
+            VALUE "LegalCopyright", ""
+            VALUE "ProductName", "SnapKey"
+            VALUE "FileVersion", "0.0.0.0"
+            VALUE "ProductVersion", "0.0.0.0"
+        }
+    }
+
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x0409, 0x04B0
+    }
+}
