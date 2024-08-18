@@ -11,7 +11,7 @@ g++ -o SnapKey SnapKey.cpp resources.o -mwindows -std=c++11 -static
 
 # success yes/no
 if [ $? -eq 0 ]; then
-    echo "Compilation successful: SnapKey.exe created."
+    echo "Compilation successful: SnapKey.exe created"
 else
     echo "Compilation failed."
 fi
