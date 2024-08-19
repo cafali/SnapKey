@@ -8,24 +8,39 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Cache MinGW
+      uses: actions/cache@v3
+      with:
+        path: C:\tools\mingw64
+        key: mingw-${{ runner.os }}-${{ hashFiles('**/SnapKey.cpp', '**/resources.rc') }}
+        restore-keys: |
+          mingw-${{ runner.os }}-
+
     - name: Install MinGW
+      if: steps.cache.outputs.cache-hit != 'true'
       run: choco install mingw
+
+    - name: Add MinGW to Path
+      run: echo "C:\tools\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding ascii -Append
 
     - name: Compile resource file
       run: windres resources.rc -o resources.o
 
-    - name: Add MinGW to Path
-      run: echo "C:\Program Files\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding ascii -Append
-
-    - name: Compile Command
+    - name: Compile the executable
       run: g++ -o SnapKey SnapKey.cpp resources.o -mwindows -std=c++11 -static
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: SnapKey-executable
+        path: SnapKey.exe
 
     - name: Run executable (optional)
       run: .\SnapKey.exe
+      if: always()
