@@ -1,5 +1,3 @@
-// SnapKey 1.2.1 src
-
 #include <windows.h>
 #include <shellapi.h>
 #include <fstream>
