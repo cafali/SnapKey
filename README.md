@@ -1,7 +1,7 @@
 
 [![testsnap](https://github.com/user-attachments/assets/e9a23ba9-d394-4711-abfc-994932605d86)](https://github.com/cafali/SnapKey/releases)
 
-**About SnapKey**
+**About SnapKey** 
 --------------------------------------------------------------------------------------------------
 SnapKey provides a user-friendly alternative to the Razer Snap Tap function, making it accessible across all keyboards!
 
