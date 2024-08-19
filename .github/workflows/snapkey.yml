@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install MinGW
+      run: choco install mingw
+
+    - name: Compile resource file
+      run: windres resources.rc -o resources.o
+
+    - name: Add MinGW to Path
+      run: echo "C:\Program Files\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding ascii -Append
+
+    - name: Compile Command
+      run: g++ -o SnapKey SnapKey.cpp resources.o -mwindows -std=c++11 -static
+
+    - name: Run executable (optional)
+      run: .\SnapKey.exe
