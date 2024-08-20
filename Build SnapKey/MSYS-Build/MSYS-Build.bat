@@ -10,7 +10,7 @@ set "SCRIPT_DIR=%~dp0"
 
 REM Set the path to your MSYS2 installation
 set "MSYS2_PATH=C:\msys64\usr\bin\bash.exe"
-if not exist "%MSYS_PATH%" (
+if not exist "%MSYS2_PATH%" (
   echo invalid path to MSYS2 provided.
   pause
   endlocal
