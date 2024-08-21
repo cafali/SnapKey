@@ -25,7 +25,7 @@ Download
 - Accessible via the system tray 🖥️
 - Compatible with all keyboards ✅
 - Does not interact with game files 🎮
-- Activate/Deactivate SnapKey via context menu ⛔
+- Activate/Deactivate via context menu ⛔
 - Sticky Keys Feature: tracks the state of a pressed key ⌨️
 - Enhances the precision of counter-strafing movements in games 🎯
 - Allows key rebinding using ASCII codes specified in the configuration file 🛠️
