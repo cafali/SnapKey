@@ -15,7 +15,14 @@ SnapKey is a lightweight, open-source tool that operates from the system tray an
 
 Download
 --------------------------------------------------------------------------------------------------
-**[Download SnapKey from GitHub](https://github.com/cafali/SnapKey/releases)**
+<p align="center">
+  <a href="https://github.com/cafali/SnapKey/releases">Github</a> |
+  <a href="https://sourceforge.net/projects/snapkey/">SourceForge</a> |
+  <a href="https://www.softpedia.com/get/Tweak/System-Tweak/SnapKey.shtml">Softpedia</a>
+</p>
+
+
+![latesver](https://github.com/user-attachments/assets/09694f7c-6eeb-4c80-9a02-1d777956d181)
 
 **SnapKey Features**
 --------------------------------------------------------------------------------------------------
@@ -102,11 +109,6 @@ Close SnapKey
 Since SnapKey isn’t natively supported on Linux, it’s recommended to check out @Dillacorn's guide on **[running SnapKey on Linux](https://github.com/cafali/SnapKey/issues/4#issuecomment-2251568839)**.
 
 [![LINUX baner](https://github.com/user-attachments/assets/794a16ed-b0ab-4320-a680-52bda1ca0fd1)](https://github.com/cafali/SnapKey/wiki/Setup-Linux)
-
-
---------------------------------------------------------------------------------------------------
-[![download](https://github.com/user-attachments/assets/8f8b7923-4788-4298-aaf7-5af5225dae5b)](https://github.com/cafali/SnapKey/wiki/Updates#download-latest-release)
-
 
 Looking for More Information? Got Questions or Need Help?
 --------------------------------------------------------------------------------------------------
