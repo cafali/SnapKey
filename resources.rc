@@ -5,8 +5,8 @@ IDI_ICON1 ICON "snapkey.ico"
 
 // Version information
 1 VERSIONINFO
-FILEVERSION 1,2,2,0
-PRODUCTVERSION 1,2,2,0
+FILEVERSION 1,2,3,0
+PRODUCTVERSION 1,2,3,0
 FILEOS 0x40004
 FILETYPE 0x1
 {
@@ -20,8 +20,8 @@ FILETYPE 0x1
             VALUE "CompanyName", "SnapKey"
             VALUE "LegalCopyright", ""
             VALUE "ProductName", "SnapKey"
-            VALUE "FileVersion", "1.2.2.0"
-            VALUE "ProductVersion", "1.2.2.0"
+            VALUE "FileVersion", "1.2.3.0"
+            VALUE "ProductVersion", "1.2.3.0"
         }
     }
 
