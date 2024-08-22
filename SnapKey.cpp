@@ -288,13 +288,38 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             break;
         case ID_TRAY_REBIND_KEYS:
             {
-                // Open the config file with the default editor
+                // Open the config file with the default text editor
                 ShellExecute(NULL, TEXT("open"), TEXT("config.cfg"), NULL, NULL, SW_SHOWNORMAL);
             }
             break;
         case ID_TRAY_LOCK_FUNCTION:
             {
                 isLocked = !isLocked;
+
+                // Update the tray icon based on the lock state
+                if (isLocked)
+                {
+                    // Load icon_off.ico
+                    HICON hIconOff = (HICON)LoadImage(NULL, TEXT("icon_off.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+                    if (hIconOff)
+                    {
+                        nid.hIcon = hIconOff;
+                        Shell_NotifyIcon(NIM_MODIFY, &nid);
+                        DestroyIcon(hIconOff); // Destroy the icon after use
+                    }
+                }
+                else
+                {
+                    // Load icon.ico
+                    HICON hIconOn = (HICON)LoadImage(NULL, TEXT("icon.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+                    if (hIconOn)
+                    {
+                        nid.hIcon = hIconOn;
+                        Shell_NotifyIcon(NIM_MODIFY, &nid);
+                        DestroyIcon(hIconOn); // Destroy the icon after use
+                    }
+                }
+
                 // Update the context menu item to reflect the new lock state
                 HMENU hMenu = GetSubMenu(GetMenu(hwnd), 0);
                 CheckMenuItem(hMenu, ID_TRAY_LOCK_FUNCTION, MF_BYCOMMAND | (isLocked ? MF_CHECKED : MF_UNCHECKED));
