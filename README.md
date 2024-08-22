@@ -105,7 +105,7 @@ Since SnapKey isn’t natively supported on Linux, it’s recommended to check o
 
 
 --------------------------------------------------------------------------------------------------
-[![download](https://github.com/user-attachments/assets/8f8b7923-4788-4298-aaf7-5af5225dae5b)](vhttps://github.com/cafali/SnapKey/wiki/Updates#download-latest-release)
+[![download](https://github.com/user-attachments/assets/8f8b7923-4788-4298-aaf7-5af5225dae5b)](https://github.com/cafali/SnapKey/wiki/Updates#download-latest-release)
 
 
 Looking for More Information? Got Questions or Need Help?
