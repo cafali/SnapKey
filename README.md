@@ -105,10 +105,8 @@ Since SnapKey isn’t natively supported on Linux, it’s recommended to check o
 
 
 --------------------------------------------------------------------------------------------------
-![download](https://github.com/user-attachments/assets/8f8b7923-4788-4298-aaf7-5af5225dae5b)
+[![download](https://github.com/user-attachments/assets/8f8b7923-4788-4298-aaf7-5af5225dae5b)](vhttps://github.com/cafali/SnapKey/wiki/Updates#download-latest-release)
 --------------------------------------------------------------------------------------------------
-### [SnapKey on SourceForge](https://sourceforge.net/projects/snapkey/)
-### [SnapKey on Softpedia](https://www.softpedia.com/get/Tweak/System-Tweak/SnapKey.shtml)
 
 Looking for More Information? Got Questions or Need Help?
 --------------------------------------------------------------------------------------------------
