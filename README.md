@@ -16,7 +16,7 @@ SnapKey is a lightweight, open-source tool that operates from the system tray an
 Download
 --------------------------------------------------------------------------------------------------
 <p align="center">
-  <a href="https://github.com/cafali/SnapKey/releases">Github</a> |
+  <a href="https://github.com/cafali/SnapKey/releases">GitHub</a> |
   <a href="https://sourceforge.net/projects/snapkey/">SourceForge</a> |
   <a href="https://www.softpedia.com/get/Tweak/System-Tweak/SnapKey.shtml">Softpedia</a>
 </p>
