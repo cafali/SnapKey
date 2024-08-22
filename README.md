@@ -22,7 +22,7 @@ Download
 </p>
 
 
-![latesver](https://github.com/user-attachments/assets/09694f7c-6eeb-4c80-9a02-1d777956d181)
+[![latesver](https://github.com/user-attachments/assets/09694f7c-6eeb-4c80-9a02-1d777956d181)](https://github.com/cafali/SnapKey/wiki/Updates)
 
 **SnapKey Features**
 --------------------------------------------------------------------------------------------------
