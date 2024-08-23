@@ -1,4 +1,3 @@
-
 [![testsnap](https://github.com/user-attachments/assets/e9a23ba9-d394-4711-abfc-994932605d86)](https://github.com/cafali/SnapKey/releases)
 
 **About SnapKey** 
@@ -97,11 +96,21 @@ press **"A"** instead.
 4. Rebind Keys (Optional):
    - [Rebind your keys](https://github.com/cafali/SnapKey/wiki/Rebinding-Keys) if you're using a nonstandard keyboard layout or if you want to map different keys
 
-Close SnapKey
+Disable SnapKey
+--------------------------------------------------------------------------------------------------
+- Right-click the SnapKey icon in the system tray and select "Disable SnapKey". This option disables the entire SnapKey functionality of the keys that are set in the config file while keeping the SnapKey process and the software running in the tray.
+
+![image](https://github.com/user-attachments/assets/c252b830-f8f0-4f1e-afe3-df8f8e3b64e8)
+
+
+
+Exit SnapKey
 --------------------------------------------------------------------------------------------------
    - Right-click the SnapKey icon in the system tray and select "Exit SnapKey"
 
-![image](https://github.com/user-attachments/assets/d92108b8-4bb8-458c-8c95-509cc57f3a6d)
+![image](https://github.com/user-attachments/assets/c41760d4-9339-47b8-8ed3-14d6b1c8d641)
+
+
 
 
 **Linux Support**
