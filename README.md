@@ -100,7 +100,8 @@ Disable SnapKey
 --------------------------------------------------------------------------------------------------
 - Right-click the SnapKey icon in the system tray and select "Disable SnapKey". This option disables the entire SnapKey functionality of the keys that are set in the config file while keeping the SnapKey process and the software running in the tray.
 
-![image](https://github.com/user-attachments/assets/c252b830-f8f0-4f1e-afe3-df8f8e3b64e8)
+![image](https://github.com/user-attachments/assets/4f9d8d30-4674-4361-bc87-84ee70ce4116)
+
 
 
 
@@ -108,7 +109,8 @@ Exit SnapKey
 --------------------------------------------------------------------------------------------------
    - Right-click the SnapKey icon in the system tray and select "Exit SnapKey"
 
-![image](https://github.com/user-attachments/assets/c41760d4-9339-47b8-8ed3-14d6b1c8d641)
+![image](https://github.com/user-attachments/assets/c3a9534e-ed8b-4258-be56-37b6117c1814)
+
 
 
 
