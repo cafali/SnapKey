@@ -63,9 +63,9 @@ key4=87
 #Special Keys:
 
 # BACKSPACE - 8
-# SHIFT - 16
+# SHIFT - 160
 # CONTROL - 17
-# ALT - 18
+# ALT - 164
 # ESC - 27
 # SPACE - 32
 # DEL - 46
