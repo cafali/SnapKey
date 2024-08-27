@@ -63,8 +63,10 @@ key4=87
 #Special Keys:
 
 # BACKSPACE - 8
-# SHIFT - 160
-# CONTROL - 17
+# L SHIFT - 160
+# R SHIFT - 161
+# L CONTROL - 162
+# R CONTROL - 163
 # ALT - 164
 # ESC - 27
 # SPACE - 32
