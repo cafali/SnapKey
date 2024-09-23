@@ -53,14 +53,14 @@ key4=87
 # Y - 89
 # Z - 90
 
-#Arrow Keys:
+# Arrow Keys:
 
 #Up - 38
 #Down - 40
 #Left - 37
 #Right - 39
 
-#Special Keys:
+# Special Keys:
 
 # BACKSPACE - 8
 # L SHIFT - 160
@@ -71,3 +71,16 @@ key4=87
 # ESC - 27
 # SPACE - 32
 # DEL - 46
+
+# Numpad Keys:
+
+# NUM0 - 96
+# NUM1 - 97
+# NUM2 - 98
+# NUM3 - 99
+# NUM4 - 100
+# NUM5 - 101
+# NUM6 - 102
+# NUM7 - 103
+# NUM8 - 104
+# NUM9 - 105
