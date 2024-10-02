@@ -1,3 +1,6 @@
+// SnapKey 1.2.5
+// github.com/cafali/SnapKey
+
 #include <windows.h>
 #include <shellapi.h>
 #include <fstream>
@@ -13,6 +16,7 @@ using namespace std;
 #define ID_TRAY_VERSION_INFO            3001
 #define ID_TRAY_REBIND_KEYS             3002
 #define ID_TRAY_LOCK_FUNCTION           3003
+#define ID_TRAY_RESTART_SNAPKEY         3004
 #define WM_TRAYICON                     (WM_USER + 1)
 
 struct KeyState
@@ -49,12 +53,12 @@ void SendKey(int target, bool keyDown);
 
 int main()
 {
-    // Load key bindings from config file
+    // Load key bindings (config file)
     if (!LoadConfig("config.cfg")) {
         return 1;
     }
 
-    // Create a named mutex
+    // One instance restriction
     hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
@@ -100,8 +104,8 @@ int main()
     if (hHook == NULL)
     {
         MessageBox(NULL, TEXT("Failed to install hook!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
-        ReleaseMutex(hMutex); // Release the mutex before exiting
-        CloseHandle(hMutex); // Close the handle
+        ReleaseMutex(hMutex);
+        CloseHandle(hMutex);
         return 1;
     }
 
@@ -220,7 +224,7 @@ void InitNotifyIconData(HWND hwnd)
     nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
     nid.uCallbackMessage = WM_TRAYICON;
 
-    // Load the tray icon from the current directory
+    // Load the tray icon (current directory)
     HICON hIcon = (HICON)LoadImage(NULL, TEXT("icon.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
     if (hIcon)
     {
@@ -237,7 +241,7 @@ void InitNotifyIconData(HWND hwnd)
     Shell_NotifyIcon(NIM_ADD, &nid);
 }
 
-std::string GetVersionInfo()
+std::string GetVersionInfo() // Get version info
 {
     std::ifstream versionFile("meta/version");
     if (!versionFile.is_open()) {
@@ -260,10 +264,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             GetCursorPos(&curPoint);
             SetForegroundWindow(hwnd);
 
-            // Create a context menu
+            // Create context menu
             HMENU hMenu = CreatePopupMenu();
             AppendMenu(hMenu, MF_STRING, ID_TRAY_REBIND_KEYS, TEXT("Rebind Keys"));
             AppendMenu(hMenu, MF_STRING | (isLocked ? MF_CHECKED : MF_UNCHECKED), ID_TRAY_LOCK_FUNCTION, TEXT("Disable SnapKey"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_RESTART_SNAPKEY, TEXT("Restart SnapKey")); //SnapKey 1.2.5 
             AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
             AppendMenu(hMenu, MF_STRING, ID_TRAY_VERSION_INFO, TEXT("Version Info"));
             AppendMenu(hMenu, MF_STRING, ID_TRAY_EXIT_CONTEXT_MENU_ITEM, TEXT("Exit SnapKey"));
@@ -292,31 +297,42 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 ShellExecute(NULL, TEXT("open"), TEXT("config.cfg"), NULL, NULL, SW_SHOWNORMAL);
             }
             break;
+        case ID_TRAY_RESTART_SNAPKEY: //SnapKey 1.2.5 - Restart via context menu
+            {
+                // Restart
+                TCHAR szExeFileName[MAX_PATH];
+                GetModuleFileName(NULL, szExeFileName, MAX_PATH);
+                ShellExecute(NULL, NULL, szExeFileName, NULL, NULL, SW_SHOWNORMAL);
+
+                // Quit current SnapKey instance
+                PostQuitMessage(0);
+            }
+            break;
         case ID_TRAY_LOCK_FUNCTION:
             {
                 isLocked = !isLocked;
 
-                // Update the tray icon based on the lock state
+                // Update the tray icon (Disable SnapKey) (OFF/ON)
                 if (isLocked)
                 {
-                    // Load icon_off.ico
+                    // Load icon_off.ico (OFF)
                     HICON hIconOff = (HICON)LoadImage(NULL, TEXT("icon_off.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
                     if (hIconOff)
                     {
                         nid.hIcon = hIconOff;
                         Shell_NotifyIcon(NIM_MODIFY, &nid);
-                        DestroyIcon(hIconOff); // Destroy the icon after use
+                        DestroyIcon(hIconOff);
                     }
                 }
                 else
                 {
-                    // Load icon.ico
+                    // Load icon.ico (ON)
                     HICON hIconOn = (HICON)LoadImage(NULL, TEXT("icon.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
                     if (hIconOn)
                     {
                         nid.hIcon = hIconOn;
                         Shell_NotifyIcon(NIM_MODIFY, &nid);
-                        DestroyIcon(hIconOn); // Destroy the icon after use
+                        DestroyIcon(hIconOn); 
                     }
                 }
 
@@ -338,7 +354,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-// Function to copy the backup file from the meta folder to the main directory
+// Function to copy snapkey.backup (meta folder) to the main directory
 void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename)
 {
     std::string sourcePath = "meta\\" + backupFilename;
@@ -367,11 +383,11 @@ bool LoadConfig(const std::string& filename)
 {
     std::ifstream configFile(filename);
     if (!configFile.is_open()) {
-        CreateDefaultConfig(filename);  // Restore config from backup if file doesn't exist
+        CreateDefaultConfig(filename);  // Restore config from backup.snapkey if file doesn't exist
         return false;
     }
 
-    string line;
+    string line; // Check for duplicated keys in the config file
     int id = 0;
     while (getline(configFile, line)) {
         istringstream iss(line);
@@ -393,7 +409,8 @@ bool LoadConfig(const std::string& filename)
                 }
                 else
                 {
-                    MessageBox(NULL, TEXT("config.cfg contains duplicate keys across various groups, please review and correct the setup."), TEXT("SnapKey Error"), MB_ICONEXCLAMATION | MB_OK);
+                    MessageBox(NULL, TEXT("The config file contains duplicate keys across various groups. Please review and correct the setup."), TEXT("SnapKey Error"), MB_ICONEXCLAMATION | MB_OK);
+                    MessageBox(NULL, TEXT("For more information, please view the README file or visit github.com/cafali/SnapKey/wiki."), TEXT("SnapKey Error"), MB_ICONINFORMATION | MB_OK);
                     return false;
                 }
             }
