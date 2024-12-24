@@ -8,6 +8,9 @@
 #include <string>
 #include <unordered_map>
 #include <regex>
+#include <random>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -50,6 +53,24 @@ void CreateDefaultConfig(const std::string& filename); // Declaration
 void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename); // Declaration
 std::string GetVersionInfo(); // Declaration
 void SendKey(int target, bool keyDown);
+
+// Random delay settings
+int minDelay = 10;
+int maxDelay = 60;
+
+void addRandomDelay()
+{
+    // Create a random number generator
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(minDelay, maxDelay);
+
+    // Generate a random delay duration
+    int delayDuration = dis(gen);
+
+    // Sleep for the random duration
+    std::this_thread::sleep_for(std::chrono::milliseconds(delayDuration));
+}
 
 int main()
 {
@@ -147,6 +168,7 @@ void handleKeyDown(int keyCode)
             currentGroupInfo.previousKey = currentGroupInfo.activeKey;
             currentGroupInfo.activeKey = keyCode;
 
+            addRandomDelay(); // Add a random delay before sending the key
             SendKey(currentGroupInfo.previousKey, false);
         }
     }
@@ -289,6 +311,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             {
                 std::string versionInfo = GetVersionInfo();
                 MessageBox(hwnd, versionInfo.c_str(), TEXT("Version Info"), MB_OK);
+                
             }
             break;
         case ID_TRAY_REBIND_KEYS:
@@ -413,6 +436,15 @@ bool LoadConfig(const std::string& filename)
                     MessageBox(NULL, TEXT("For more information, please view the README file or visit github.com/cafali/SnapKey/wiki."), TEXT("SnapKey Error"), MB_ICONINFORMATION | MB_OK);
                     return false;
                 }
+            }
+        }
+        if (line.find("random_delay_ms=") == 0)
+        {
+            std::smatch match;
+            std::regex delayPattern(R"(\s*(\d+)\s*,\s*(\d+)\s*)");
+            if (std::regex_search(line, match, delayPattern) && match.size()) {
+                minDelay = std::stoi(match[1].str());
+                maxDelay = std::stoi(match[2].str());
             }
         }
     }
