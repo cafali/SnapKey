@@ -32,6 +32,7 @@ Download
 - Compatible with all keyboards ✅
 - Does not interact with game files 🎮
 - Activate/Deactivate via context menu ⛔
+- Double-click the tray icon to disable it 👆👆
 - Sticky Keys Feature: tracks the state of a pressed key ⌨️
 - Enhances the precision of counter-strafing movements in games 🎯
 - Allows key rebinding using ASCII codes specified in the configuration file 🛠️
@@ -77,7 +78,9 @@ press **"A"** instead.
 1. Get SnapKey:
    - [Download](https://github.com/cafali/SnapKey/releases), Unzip and Launch SnapKey.exe
 
-<img width="417" alt="image" src="https://github.com/user-attachments/assets/e4606577-6edb-4c12-ad6e-9e5ee01ba18f">
+<img src="https://github.com/user-attachments/assets/7f8f1b06-01a8-4bc9-af9f-87d0b19b4e15" alt="Folder" width="80%">
+
+
 
 
 
@@ -98,7 +101,7 @@ press **"A"** instead.
 
 Disable SnapKey
 --------------------------------------------------------------------------------------------------
-- Right-click the SnapKey icon in the system tray and select "Disable SnapKey". This option disables the entire SnapKey functionality of the keys that are set in the config file while keeping the SnapKey process and the software running in the tray.
+- Double-click the tray icon to disable SnapKey directly or Right-click the SnapKey icon in the system tray and select "Disable SnapKey". This option disables the entire SnapKey functionality of the keys that are set in the config file while keeping the SnapKey process and the software running in the tray.
 
 ![image](https://github.com/user-attachments/assets/4f9d8d30-4674-4361-bc87-84ee70ce4116)
 
@@ -126,7 +129,7 @@ Looking for More Information? Got Questions or Need Help?
 [<img src="https://github.com/user-attachments/assets/0c6d7564-6471-49f2-9367-64f7bffb7e37" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
 
 - **[About ℹ️](https://github.com/cafali/SnapKey/wiki/About)**  
-  Learn about Snapkey, its features, and what it can do for you.
+  Discover Snapkey, explore its features, and see how it can benefit you.
 
 - **[Code Breakdown 🧠](https://github.com/cafali/SnapKey/wiki/Code-Breakdown)**  
   Dive into the details of SnapKey’s code structure.
@@ -174,6 +177,3 @@ Looking for More Information? Got Questions or Need Help?
     <img src="https://contrib.rocks/image?repo=cafali/Snapkey" />
   </a>
 </p>
-
-
-
