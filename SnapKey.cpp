@@ -1,4 +1,4 @@
-// SnapKey 1.2.6
+// SnapKey 1.2.7
 // github.com/cafali/SnapKey
 
 #include <windows.h>
