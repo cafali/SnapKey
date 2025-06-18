@@ -1,4 +1,4 @@
-// SnapKey 1.2.7
+// SnapKey 1.2.8
 // github.com/cafali/SnapKey
 
 #include <windows.h>
@@ -17,6 +17,8 @@ using namespace std;
 #define ID_TRAY_REBIND_KEYS             3002
 #define ID_TRAY_LOCK_FUNCTION           3003
 #define ID_TRAY_RESTART_SNAPKEY         3004
+#define ID_TRAY_HELP                    3005 // v1.2.8
+#define ID_TRAY_CHECKUPDATE             3006 // v1.2.8
 #define WM_TRAYICON                     (WM_USER + 1)
 
 struct KeyState
@@ -46,9 +48,9 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void InitNotifyIconData(HWND hwnd);
 bool LoadConfig(const std::string& filename);
-void CreateDefaultConfig(const std::string& filename); // Declaration
-void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename); // Declaration
-std::string GetVersionInfo(); // Declaration
+void CreateDefaultConfig(const std::string& filename); 
+void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename); 
+std::string GetVersionInfo(); 
 void SendKey(int target, bool keyDown);
 
 int main()
@@ -241,18 +243,6 @@ void InitNotifyIconData(HWND hwnd)
     Shell_NotifyIcon(NIM_ADD, &nid);
 }
 
-std::string GetVersionInfo() // Get version info
-{
-    std::ifstream versionFile("meta/version");
-    if (!versionFile.is_open()) {
-        return "Version info not available";
-    }
-
-    std::string version;
-    std::getline(versionFile, version);
-    return version.empty() ? "Version info not available" : version;
-}
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch (msg)
@@ -264,13 +254,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             GetCursorPos(&curPoint);
             SetForegroundWindow(hwnd);
 
-            // Create context menu
+            // context menu
             HMENU hMenu = CreatePopupMenu();
+            // settings & tweaks
             AppendMenu(hMenu, MF_STRING, ID_TRAY_REBIND_KEYS, TEXT("Rebind Keys"));
-            AppendMenu(hMenu, MF_STRING | (isLocked ? MF_CHECKED : MF_UNCHECKED), ID_TRAY_LOCK_FUNCTION, TEXT("Disable SnapKey"));
             AppendMenu(hMenu, MF_STRING, ID_TRAY_RESTART_SNAPKEY, TEXT("Restart SnapKey"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_LOCK_FUNCTION, isLocked ? TEXT("Enable SnapKey") : TEXT("Disable SnapKey")); // dynamicly switch between state
+            // support & info
             AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_VERSION_INFO, TEXT("Version Info"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_HELP, TEXT("Get Help"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_CHECKUPDATE, TEXT("Check Updates"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_VERSION_INFO, TEXT("Version Info (1.2.8)"));
+            AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+            // exit
             AppendMenu(hMenu, MF_STRING, ID_TRAY_EXIT_CONTEXT_MENU_ITEM, TEXT("Exit SnapKey"));
 
             // Display the context menu
@@ -311,21 +307,42 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         switch (LOWORD(wParam))
         {
-        case ID_TRAY_EXIT_CONTEXT_MENU_ITEM:
+        case ID_TRAY_EXIT_CONTEXT_MENU_ITEM: // context menu options
             PostQuitMessage(0);
             break;
-        case ID_TRAY_VERSION_INFO:
+        case ID_TRAY_VERSION_INFO: // get version info
             {
                 std::string versionInfo = GetVersionInfo();
-                MessageBox(hwnd, versionInfo.c_str(), TEXT("Version Info"), MB_OK);
+                MessageBox(hwnd, versionInfo.c_str(), TEXT("SnapKey Version Info"), MB_OK);
             }
             break;
-        case ID_TRAY_REBIND_KEYS:
+        case ID_TRAY_REBIND_KEYS: // rebind keys - open cfg
             {
                 ShellExecute(NULL, TEXT("open"), TEXT("config.cfg"), NULL, NULL, SW_SHOWNORMAL);
             }
             break;
-        case ID_TRAY_RESTART_SNAPKEY:
+        
+        case ID_TRAY_HELP: // get help - open README.pdf
+            {
+                ShellExecute(NULL, TEXT("open"), TEXT("README.pdf"), NULL, NULL, SW_SHOWNORMAL);
+            }
+            break;
+
+        case ID_TRAY_CHECKUPDATE: // check updates - open github release page
+            {
+                int result = MessageBox(NULL,
+                            TEXT("You are about to visit the SnapKey update page (github.com). Continue?"),
+                            TEXT("Update SnapKey"),
+                            MB_YESNO | MB_ICONQUESTION);
+
+                        if (result == IDYES)
+                    {
+                ShellExecute(NULL, TEXT("open"), TEXT("https://github.com/cafali/SnapKey/releases"), NULL, NULL, SW_SHOWNORMAL);
+                }
+            }
+            break;
+
+        case ID_TRAY_RESTART_SNAPKEY: // restart snapkey 
             {
                 TCHAR szExeFileName[MAX_PATH];
                 GetModuleFileName(NULL, szExeFileName, MAX_PATH);
@@ -333,7 +350,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 PostQuitMessage(0);
             }
             break;
-        case ID_TRAY_LOCK_FUNCTION:
+        case ID_TRAY_LOCK_FUNCTION: // lock sticky keys
             {
                 isLocked = !isLocked;
                 HICON hIcon = isLocked
@@ -358,6 +375,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         return DefWindowProc(hwnd, msg, wParam, lParam);
     }
     return 0;
+}
+
+// version information window
+std::string GetVersionInfo() {
+    return "SnapKey v1.2.8 (R17)\n"
+           "Version Date: June 19, 2025\n"
+           "Repository: github.com/cafali/SnapKey\n"
+           "License: MIT License\n";
 }
 
 // Function to copy snapkey.backup (meta folder) to the main directory

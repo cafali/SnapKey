@@ -5,8 +5,8 @@ IDI_ICON1 ICON "snapkey.ico"
 
 // Version information
 1 VERSIONINFO
-FILEVERSION 1,2,7,0
-PRODUCTVERSION 1,2,7,0
+FILEVERSION 1,2,8,0
+PRODUCTVERSION 1,2,8,0
 FILEOS 0x40004
 FILETYPE 0x1
 {
@@ -20,8 +20,8 @@ FILETYPE 0x1
             VALUE "CompanyName", "cafali"
             VALUE "LegalCopyright", "Copyright \xA9 2025 cafali - MIT License (github.com/cafali/SnapKey)"
             VALUE "ProductName", "SnapKey"
-            VALUE "FileVersion", "1.2.7.0"
-            VALUE "ProductVersion", "1.2.7.0"
+            VALUE "FileVersion", "1.2.8.0"
+            VALUE "ProductVersion", "1.2.8.0"
         }
     }
 
