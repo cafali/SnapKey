@@ -9,7 +9,7 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} /MT")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MTd")
 set(BUILD_SHARED_LIBS OFF)
 
-add_executable(SnapKey SnapKey.cpp resources.rc)
+add_executable(SnapKey WIN32 SnapKey.cpp resources.rc)
 
 if (WIN32)
     set_target_properties(SnapKey PROPERTIES

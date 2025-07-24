@@ -1,4 +1,4 @@
-[![testsnap](https://github.com/user-attachments/assets/e9a23ba9-d394-4711-abfc-994932605d86)](https://github.com/cafali/SnapKey/releases)
+<img width="1200" height="675" alt="disconnected_with_ban_centered_aa" src="https://github.com/user-attachments/assets/6785c5cd-f4ab-4752-aa66-b64544b8fb92" />
 
 **About SnapKey** 
 --------------------------------------------------------------------------------------------------
@@ -10,7 +10,28 @@ SnapKey is a lightweight, open-source tool that operates from the system tray an
 
 [![COMPATIBLE](https://github.com/user-attachments/assets/069a7a23-cfe4-47eb-8ac2-05872fcc2028)](https://github.com/cafali/SnapKey/wiki/Compatibility-List)
 
+### **New in v1.2.9 – Experimental VAC/CS2 Bypass Modes 🚫🎮**
 
+---
+
+SnapKey v1.2.9 introduces two **experimental bypass modes** aimed at improving compatibility with games that impose stricter input policies, such as **Counter-Strike 2 (CS2)**. These modes can be toggled independently in the configuration file and allow SnapKey to remain active while circumventing CS2’s built-in restrictions on background input automation.
+
+> ⚙️ **VAC Bypass A** — Simulates real-time user input using a lower-level system call chain.
+> ⚙️ **VAC Bypass B** — Uses synthetic input injection with randomized timings to mimic human behavior more accurately.
+
+Both modes are entirely optional and **disabled by default**. When enabled, SnapKey will change its tray icon to indicate **VAC bypass mode** is active:
+
+* ✅ A curved arrow wrapping around the "VAC" label appears.
+* ⛔ This visually reminds users that advanced compatibility workarounds are enabled.
+<img width="239" height="274" alt="image" src="https://github.com/user-attachments/assets/a1019787-0420-49e6-aa87-1e79f78bb66c" />
+
+> \[!WARNING]
+> These features are **experimental** and **not officially endorsed by Valve or any game publisher**. While SnapKey does not directly modify any game files or memory, **use of automation tools may still violate Terms of Service** for certain games.
+> **Use at your own risk.**
+
+For details on how these bypass modes work and how to enable them, refer to the [**Bypass Modes Wiki Page**](https://github.com/cafali/SnapKey/wiki/VAC-Bypass-Modes).
+
+---
 
 Download
 --------------------------------------------------------------------------------------------------
@@ -120,12 +141,13 @@ Looking for More Information? Got Questions or Need Help?
 
 <p align="center">
   <a href="https://github.com/cafali">@cafali</a> 
-  <a href="https://github.com/minteeaa">@minteeaa</a> 
+  <a href="https://github.com/minteeaa">@minteeaa</a>
+  <a href="https://github.com/felix3322">@felix3322</a>
   <a href="https://github.com/Yaw-Dev">@Yaw-Dev</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/cafali/Snapkey/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=cafali/Snapkey" />
+  <a href="https://github.com/felix3322/Snapkey/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=felix3322/Snapkey" />
   </a>
 </p>
