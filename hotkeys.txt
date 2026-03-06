@@ -1,0 +1,32 @@
+toggle_snapkey=Ctrl+Alt+S
+toggle_socd_x=Ctrl+L
+toggle_socd_y=Ctrl+Shift+1
+toggle_mouse_override=Ctrl+Shift+2
+toggle_mouse_override_x=F6
+toggle_mouse_override_y=MouseX1
+
+
+
+
+# Format:
+# action=key_combination
+
+
+
+# Supported keys:
+# A-Z
+# 0-9
+# F1-F24
+# Ctrl
+# Alt
+# Shift
+# Win
+# MouseLeft
+# MouseRight
+# MouseMiddle
+# MouseX1 <- Side Button 1
+# MouseX2 <- Side Button 2
+
+
+
+# After editing this file, DONT forget to save it and then restart SnapKey Pro or use the "Restart" option in the tray menu.

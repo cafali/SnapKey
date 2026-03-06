@@ -1,0 +1,1 @@
+g++ *.cpp resource.o admin.o -o "SnapKey Pro.exe" -mwindows -static -static-libgcc -static-libstdc++ -luser32 -lgdi32 -lshlwapi
